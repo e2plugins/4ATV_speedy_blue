@@ -6,11 +6,14 @@ from Renderer import Renderer
 from enigma import ePixmap, ePicLoad, eTimer
 from Components.AVSwitch import AVSwitch
 from Components.Pixmap import Pixmap
-from urllib2 import urlopen, quote
 import json
 import re
 import os
 import socket
+
+
+from six.moves.urllib.parse import quote
+from six.moves.urllib.request import urlopen
 
 
 tmdb_api = "3c3efcf47c3577558812bb9d64019d65"

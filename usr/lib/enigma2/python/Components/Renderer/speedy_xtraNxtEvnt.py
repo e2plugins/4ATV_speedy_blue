@@ -8,6 +8,9 @@ from enigma import eLabel, eEPGCache
 from Components.VariableText import VariableText
 from time import localtime
 
+from six.moves import range
+
+
 class speedy_xtraNxtEvnt(Renderer, VariableText):
 
     def __init__(self):
@@ -36,7 +39,7 @@ class speedy_xtraNxtEvnt(Renderer, VariableText):
             ref = self.source.service
             nextEvent = self.epgcache.lookupEvent(['IBDCTM', (ref.toString(), 0, 1, -1)])
             if nextEvent and int(self.snglEvnt) < 1:
-                for i in xrange(int(self.nxEvnt)):
+                for i in range(int(self.nxEvnt)):
                     evnts = nextEvent[i+1][4]
                     bt = localtime(nextEvent[i+1][1])
                     self.text = self.text + "%02d:%02d - %s\n"%(bt[3], bt[4], evnts)

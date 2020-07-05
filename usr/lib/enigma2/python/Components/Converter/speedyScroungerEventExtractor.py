@@ -1,7 +1,9 @@
 from Components.Converter.Converter import Converter
 from Components.Element import cached
 import re
-import HTMLParser
+
+from six.moves import html_parser
+
 
 #Version 1.0.0
 class speedyScroungerEventExtractor (Converter, object):
@@ -25,7 +27,7 @@ class speedyScroungerEventExtractor (Converter, object):
     @cached
     def getText(self):
         event = self.source.event
-        h = HTMLParser.HTMLParser()
+        h = html_parser.HTMLParser()
         if event is not None:
             if self.types != '':
                 rets = []

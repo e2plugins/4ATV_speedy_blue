@@ -6,7 +6,9 @@ from Components.Element import cached
 import json
 import re
 import os
-import urllib2
+
+from six.moves import urllib
+
 
 try:
     if os.path.isdir('/media/usb/backdrop'):
@@ -67,14 +69,14 @@ class speedyBackdropCnvrt(Converter, object):
 
     def searchPoster(self):
         url_json = "https://api.themoviedb.org/3/search/%s?api_key=3c3efcf47c3577558812bb9d64019d65&language=de-DE&append_to_response=images&include_image_language=de,null&query=%s"%(self.srch, self.evntNm)
-        jp = json.load(urllib2.urlopen(url_json))
+        jp = json.load(urllib.request.urlopen(url_json))
 
         imgP = (jp['results'][0]['backdrop_path'])
         url_poster = "https://image.tmdb.org/t/p/w300%s"%(imgP)
         dwn_poster = "/media/usb/backdrop/%s.jpg"%(self.evntNm)
         if not os.path.exists(dwn_poster):
             with open(dwn_poster, 'wb') as f:
-                f.write(urllib2.urlopen(url_poster).read())
+                f.write(urllib.request.urlopen(url_poster).read())
                 f.close()
                 return self.evntNm
 

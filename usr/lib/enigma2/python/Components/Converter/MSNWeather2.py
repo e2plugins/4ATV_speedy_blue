@@ -36,6 +36,9 @@ import gettext
 import math
 import os
 
+import six
+
+
 weather_city = config.plugins.weathermsn.city.value # 'Moscow,Russia'
 degreetype = config.plugins.weathermsn.degreetype.value # 'C'
 windtype = config.plugins.weathermsn.windtype.value # 'ms'
@@ -348,16 +351,16 @@ class MSNWeather2(Poll, Converter, object):
                     longitude = '%s' %  line.split(' long')[1].split('"')[1].replace(',', '.')
                 if "<current" in line:
                     if not line.split('temperature')[1].split('"')[1][0] is '-' and not line.split('temperature')[1].split('"')[1][0] is '0':
-                        msnweather['Temp'] = '+' + line.split('temperature')[1].split('"')[1] + '%s%s' % (unichr(176).encode("latin-1"), degreetype)
+                        msnweather['Temp'] = '+' + line.split('temperature')[1].split('"')[1] + '%s%s' % (six.unichr(176).encode("latin-1"), degreetype)
                     else:
-                        msnweather['Temp'] = line.split('temperature')[1].split('"')[1] + '%s%s' % (unichr(176).encode("latin-1"), degreetype)
+                        msnweather['Temp'] = line.split('temperature')[1].split('"')[1] + '%s%s' % (six.unichr(176).encode("latin-1"), degreetype)
                     if not line.split('feelslike')[1].split('"')[1][0] is '-' and not line.split('feelslike')[1].split('"')[1][0] is '0':
-                        msnweather['Feelslike'] = '+' + line.split('feelslike')[1].split('"')[1] + '%s%s' % (unichr(176).encode("latin-1"), degreetype)
+                        msnweather['Feelslike'] = '+' + line.split('feelslike')[1].split('"')[1] + '%s%s' % (six.unichr(176).encode("latin-1"), degreetype)
                     else:
-                        msnweather['Feelslike'] = line.split('feelslike')[1].split('"')[1] + '%s%s' % (unichr(176).encode("latin-1"), degreetype)
+                        msnweather['Feelslike'] = line.split('feelslike')[1].split('"')[1] + '%s%s' % (six.unichr(176).encode("latin-1"), degreetype)
                     msnweather['Picon'] = line.split('skycode')[1].split('"')[1]
                     msnweather['Skytext'] = line.split('skytext')[1].split('"')[1]
-                    msnweather['Humidity'] = line.split('humidity')[1].split('"')[1] + ' %s' % unichr(37).encode("latin-1")
+                    msnweather['Humidity'] = line.split('humidity')[1].split('"')[1] + ' %s' % six.unichr(37).encode("latin-1")
                     try:
                         msnweather['Wind'] = line.split('winddisplay')[1].split('"')[1].split(' ')[2]
                     except:
@@ -404,16 +407,16 @@ class MSNWeather2(Poll, Converter, object):
 # День 0
                 if "<forecast" in line:
                     if not line.split('low')[1].split('"')[1][0] is '-' and not line.split('low')[1].split('"')[1][0] is '0':
-                        low0weather = '+' + line.split('low')[1].split('"')[1] + '%s' % unichr(176).encode("latin-1")
+                        low0weather = '+' + line.split('low')[1].split('"')[1] + '%s' % six.unichr(176).encode("latin-1")
                         msnweather['Lowtemp0'] = '%s%s' % (low0weather, degreetype)
                     else:
-                        low0weather = line.split('low')[1].split('"')[1] + '%s' % unichr(176).encode("latin-1")
+                        low0weather = line.split('low')[1].split('"')[1] + '%s' % six.unichr(176).encode("latin-1")
                         msnweather['Lowtemp0'] = '%s%s' % (low0weather, degreetype)
                     if not line.split('high')[1].split('"')[1][0] is '-' and not line.split('high')[1].split('"')[1][0] is '0':
-                        hi0weather = '+' + line.split('high')[1].split('"')[1] + '%s' % unichr(176).encode("latin-1")
+                        hi0weather = '+' + line.split('high')[1].split('"')[1] + '%s' % six.unichr(176).encode("latin-1")
                         msnweather['Hightemp0'] = '%s%s' % (hi0weather, degreetype)
                     else:
-                        hi0weather = line.split('high')[1].split('"')[1] + '%s' % unichr(176).encode("latin-1")
+                        hi0weather = line.split('high')[1].split('"')[1] + '%s' % six.unichr(176).encode("latin-1")
                         msnweather['Hightemp0'] = '%s%s' % (hi0weather, degreetype)
                     msnweather['Temp0'] = '%s / %s' % (hi0weather, low0weather)
                     msnweather['Picon0'] = line.split('skycodeday')[1].split('"')[1]
@@ -422,20 +425,20 @@ class MSNWeather2(Poll, Converter, object):
                     msnweather['Day0'] = line.split(' day')[2].split('"')[1]
                     msnweather['Shortday0'] = line.split('shortday')[2].split('"')[1]
                     msnweather['Skytext0'] = line.split('skytextday')[1].split('"')[1]
-                    msnweather['Precip0'] = line.split('precip')[1].split('"')[1] + ' %s' % unichr(37).encode("latin-1")
+                    msnweather['Precip0'] = line.split('precip')[1].split('"')[1] + ' %s' % six.unichr(37).encode("latin-1")
 # День 1
                 if "<forecast" in line:
                     if not line.split('low')[2].split('"')[1][0] is '-' and not line.split('low')[2].split('"')[1][0] is '0':
-                        low1weather = '+' + line.split('low')[2].split('"')[1] + '%s' % unichr(176).encode("latin-1")
+                        low1weather = '+' + line.split('low')[2].split('"')[1] + '%s' % six.unichr(176).encode("latin-1")
                         msnweather['Lowtemp1'] = '%s%s' % (low1weather, degreetype)
                     else:
-                        low1weather = line.split('low')[2].split('"')[1] + '%s' % unichr(176).encode("latin-1")
+                        low1weather = line.split('low')[2].split('"')[1] + '%s' % six.unichr(176).encode("latin-1")
                         msnweather['Lowtemp1'] = '%s%s' % (low1weather, degreetype)
                     if not line.split('high')[2].split('"')[1][0] is '-' and not line.split('high')[2].split('"')[1][0] is '0':
-                        hi1weather = '+' + line.split('high')[2].split('"')[1] + '%s' % unichr(176).encode("latin-1")
+                        hi1weather = '+' + line.split('high')[2].split('"')[1] + '%s' % six.unichr(176).encode("latin-1")
                         msnweather['Hightemp1'] = '%s%s' % (hi1weather, degreetype)
                     else:
-                        hi1weather = line.split('high')[2].split('"')[1] + '%s' % unichr(176).encode("latin-1")
+                        hi1weather = line.split('high')[2].split('"')[1] + '%s' % six.unichr(176).encode("latin-1")
                         msnweather['Hightemp1'] = '%s%s' % (hi1weather, degreetype)
                     msnweather['Temp1'] = '%s / %s' % (hi1weather, low1weather)
                     msnweather['Picon1'] = line.split('skycodeday')[2].split('"')[1]
@@ -444,20 +447,20 @@ class MSNWeather2(Poll, Converter, object):
                     msnweather['Day1'] = line.split(' day')[3].split('"')[1]
                     msnweather['Shortday1'] = line.split('shortday')[3].split('"')[1]
                     msnweather['Skytext1'] = line.split('skytextday')[2].split('"')[1]
-                    msnweather['Precip1'] = line.split('precip')[2].split('"')[1] + ' %s' % unichr(37).encode("latin-1")
+                    msnweather['Precip1'] = line.split('precip')[2].split('"')[1] + ' %s' % six.unichr(37).encode("latin-1")
 # День 2
                 if "<forecast" in line:
                     if not line.split('low')[3].split('"')[1][0] is '-' and not line.split('low')[3].split('"')[1][0] is '0':
-                        low2weather = '+' + line.split('low')[3].split('"')[1] + '%s' % unichr(176).encode("latin-1")
+                        low2weather = '+' + line.split('low')[3].split('"')[1] + '%s' % six.unichr(176).encode("latin-1")
                         msnweather['Lowtemp2'] = '%s%s' % (low2weather, degreetype)
                     else:
-                        low2weather = line.split('low')[3].split('"')[1] + '%s' % unichr(176).encode("latin-1")
+                        low2weather = line.split('low')[3].split('"')[1] + '%s' % six.unichr(176).encode("latin-1")
                         msnweather['Lowtemp2'] = '%s%s' % (low2weather, degreetype)
                     if not line.split('high')[3].split('"')[1][0] is '-' and not line.split('high')[3].split('"')[1][0] is '0':
-                        hi2weather = '+' + line.split('high')[3].split('"')[1] + '%s' % unichr(176).encode("latin-1")
+                        hi2weather = '+' + line.split('high')[3].split('"')[1] + '%s' % six.unichr(176).encode("latin-1")
                         msnweather['Hightemp2'] = '%s%s' % (hi2weather, degreetype)
                     else:
-                        hi2weather = line.split('high')[3].split('"')[1] + '%s' % unichr(176).encode("latin-1")
+                        hi2weather = line.split('high')[3].split('"')[1] + '%s' % six.unichr(176).encode("latin-1")
                         msnweather['Hightemp2'] = '%s%s' % (hi2weather, degreetype)
                     msnweather['Temp2'] = '%s / %s' % (hi2weather, low2weather)
                     msnweather['Picon2'] = line.split('skycodeday')[3].split('"')[1]
@@ -466,20 +469,20 @@ class MSNWeather2(Poll, Converter, object):
                     msnweather['Day2'] = line.split(' day')[4].split('"')[1]
                     msnweather['Shortday2'] = line.split('shortday')[4].split('"')[1]
                     msnweather['Skytext2'] = line.split('skytextday')[3].split('"')[1]
-                    msnweather['Precip2'] = line.split('precip')[3].split('"')[1] + ' %s' % unichr(37).encode("latin-1")
+                    msnweather['Precip2'] = line.split('precip')[3].split('"')[1] + ' %s' % six.unichr(37).encode("latin-1")
 # День 3
                 if "<forecast" in line:
                     if not line.split('low')[4].split('"')[1][0] is '-' and not line.split('low')[4].split('"')[1][0] is '0':
-                        low3weather = '+' + line.split('low')[4].split('"')[1] + '%s' % unichr(176).encode("latin-1")
+                        low3weather = '+' + line.split('low')[4].split('"')[1] + '%s' % six.unichr(176).encode("latin-1")
                         msnweather['Lowtemp3'] = '%s%s' % (low3weather, degreetype)
                     else:
-                        low3weather = line.split('low')[4].split('"')[1] + '%s' % unichr(176).encode("latin-1")
+                        low3weather = line.split('low')[4].split('"')[1] + '%s' % six.unichr(176).encode("latin-1")
                         msnweather['Lowtemp3'] = '%s%s' % (low3weather, degreetype)
                     if not line.split('high')[4].split('"')[1][0] is '-' and not line.split('high')[4].split('"')[1][0] is '0':
-                        hi3weather = '+' + line.split('high')[4].split('"')[1] + '%s' % unichr(176).encode("latin-1")
+                        hi3weather = '+' + line.split('high')[4].split('"')[1] + '%s' % six.unichr(176).encode("latin-1")
                         msnweather['Hightemp3'] = '%s%s' % (hi3weather, degreetype)
                     else:
-                        hi3weather = line.split('high')[4].split('"')[1] + '%s' % unichr(176).encode("latin-1")
+                        hi3weather = line.split('high')[4].split('"')[1] + '%s' % six.unichr(176).encode("latin-1")
                         msnweather['Hightemp3'] = '%s%s' % (hi3weather, degreetype)
                     msnweather['Temp3'] = '%s / %s' % (hi3weather, low3weather)
                     msnweather['Picon3'] = line.split('skycodeday')[4].split('"')[1]
@@ -488,20 +491,20 @@ class MSNWeather2(Poll, Converter, object):
                     msnweather['Day3'] = line.split(' day')[5].split('"')[1]
                     msnweather['Shortday3'] = line.split('shortday')[5].split('"')[1]
                     msnweather['Skytext3'] = line.split('skytextday')[4].split('"')[1]
-                    msnweather['Precip3'] = line.split('precip')[4].split('"')[1] + ' %s' % unichr(37).encode("latin-1")
+                    msnweather['Precip3'] = line.split('precip')[4].split('"')[1] + ' %s' % six.unichr(37).encode("latin-1")
 # День 4
                 if "<forecast" in line:
                     if not line.split('low')[5].split('"')[1][0] is '-' and not line.split('low')[5].split('"')[1][0] is '0':
-                        low4weather = '+' + line.split('low')[5].split('"')[1] + '%s' % unichr(176).encode("latin-1")
+                        low4weather = '+' + line.split('low')[5].split('"')[1] + '%s' % six.unichr(176).encode("latin-1")
                         msnweather['Lowtemp4'] = '%s%s' % (low4weather, degreetype)
                     else:
-                        low4weather = line.split('low')[5].split('"')[1] + '%s' % unichr(176).encode("latin-1")
+                        low4weather = line.split('low')[5].split('"')[1] + '%s' % six.unichr(176).encode("latin-1")
                         msnweather['Lowtemp4'] = '%s%s' % (low4weather, degreetype)
                     if not line.split('high')[5].split('"')[1][0] is '-' and not line.split('high')[5].split('"')[1][0] is '0':
-                        hi4weather = '+' + line.split('high')[5].split('"')[1] + '%s' % unichr(176).encode("latin-1")
+                        hi4weather = '+' + line.split('high')[5].split('"')[1] + '%s' % six.unichr(176).encode("latin-1")
                         msnweather['Hightemp4'] = '%s%s' % (hi4weather, degreetype)
                     else:
-                        hi4weather = line.split('high')[5].split('"')[1] + '%s' % unichr(176).encode("latin-1")
+                        hi4weather = line.split('high')[5].split('"')[1] + '%s' % six.unichr(176).encode("latin-1")
                         msnweather['Hightemp4'] = '%s%s' % (hi4weather, degreetype)
                     msnweather['Temp4'] = '%s / %s' % (hi4weather, low4weather)
                     msnweather['Picon4'] = line.split('skycodeday')[5].split('"')[1]
@@ -510,7 +513,7 @@ class MSNWeather2(Poll, Converter, object):
                     msnweather['Day4'] = line.split(' day')[6].split('"')[1]
                     msnweather['Shortday4'] = line.split('shortday')[6].split('"')[1]
                     msnweather['Skytext4'] = line.split('skytextday')[5].split('"')[1]
-                    msnweather['Precip4'] = line.split('precip')[5].split('"')[1] + ' %s' % unichr(37).encode("latin-1")
+                    msnweather['Precip4'] = line.split('precip')[5].split('"')[1] + ' %s' % six.unichr(37).encode("latin-1")
             except:
                 pass
 #
@@ -580,9 +583,9 @@ class MSNWeather2(Poll, Converter, object):
             SS = ''
         try:
             msnweather['Julianday'] = '%s' % JD
-            msnweather['Sunrise'] = '%s%s%s%s' % (SRh, unichr(58).encode("latin-1"), SR, SRm)
-            msnweather['Sunset'] = '%s%s%s%s' % (SSh, unichr(58).encode("latin-1"), SS, SSm)
-            msnweather['Solstice'] = '%s%s%s%s' % (SCh, unichr(58).encode("latin-1"), SC, SCm)
+            msnweather['Sunrise'] = '%s%s%s%s' % (SRh, six.unichr(58).encode("latin-1"), SR, SRm)
+            msnweather['Sunset'] = '%s%s%s%s' % (SSh, six.unichr(58).encode("latin-1"), SS, SSm)
+            msnweather['Solstice'] = '%s%s%s%s' % (SCh, six.unichr(58).encode("latin-1"), SC, SCm)
         except:
             msnweather['Julianday'] = msnweather['Sunrise'] = msnweather['Sunset'] = msnweather['Solstice'] = 'n/a'
 # Орбита Луны
@@ -779,10 +782,10 @@ class MSNWeather2(Poll, Converter, object):
                 phase = _('Full moon')
         try:
             msnweather['Moondist'] = _('%s km') % Mdist
-            msnweather['Moonrise'] = '%s%s%s%s' % (MRh, unichr(58).encode("latin-1"), MR, MRm)
-            msnweather['Moonset'] = '%s%s%s%s' % (MSh, unichr(58).encode("latin-1"), MS, MSm)
+            msnweather['Moonrise'] = '%s%s%s%s' % (MRh, six.unichr(58).encode("latin-1"), MR, MRm)
+            msnweather['Moonset'] = '%s%s%s%s' % (MSh, six.unichr(58).encode("latin-1"), MS, MSm)
             msnweather['Moonphase'] = '%s' % phase
-            msnweather['Moonlight'] = '%s %s' % (light, unichr(37).encode("latin-1"))
+            msnweather['Moonlight'] = '%s %s' % (light, six.unichr(37).encode("latin-1"))
             msnweather['PiconMoon'] = '%s' % pic
         except:
             msnweather['Moondist'] = msnweather['Moonrise'] = msnweather['Moonset'] = msnweather['Moonphase'] = msnweather['Moonlight'] = 'n/a'

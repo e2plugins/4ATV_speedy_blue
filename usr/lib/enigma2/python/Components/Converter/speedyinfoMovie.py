@@ -13,11 +13,14 @@
 from Components.Converter.Converter import Converter
 from Components.Element import cached
 from enigma import eTimer
-from urllib2 import urlopen, quote
 import json
 import re
 import os
 
+
+
+from six.moves.urllib.parse import quote
+from six.moves.urllib.request import urlopen
 
 
 api = '4d13638a'

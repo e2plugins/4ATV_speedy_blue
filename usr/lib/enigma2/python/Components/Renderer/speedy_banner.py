@@ -9,7 +9,9 @@ from Components.Pixmap import Pixmap
 import json
 import re
 import os
-import urllib2
+
+from six.moves import urllib
+
 
 if os.path.isdir("/media/usb"):
     path_folder = "/media/usb/banner/"
@@ -50,7 +52,7 @@ class speedy_banner(Renderer):
                         evntNm = evnt
                     self.dwn_banner = path_folder + "{}_banner.jpg".format(evntNm)
                     bannerName = path_folder + evntNm + "_banner.jpg"
-                    self.evntNm = urllib2.quote(evntNm)
+                    self.evntNm = urllib.parse.quote(evntNm)
                     if os.path.exists(bannerName):
                         try:
                             size = self.instance.size()
@@ -87,7 +89,7 @@ class speedy_banner(Renderer):
             url_tvdb = "https://thetvdb.com/api/GetSeries.php?seriesname={}".format(self.evntNm)
             if year:
                 url_tvdb += "&primary_release_year={}&year={}".format(year, year)
-            url_read = urllib2.urlopen(url_tvdb).read()
+            url_read = urllib.request.urlopen(url_tvdb).read()
             series_id = re.findall('<seriesid>(.*?)</seriesid>', url_read, re.I)[0]
             if series_id:
                 try:
@@ -106,7 +108,7 @@ class speedy_banner(Renderer):
                             url_tmdb = "https://api.themoviedb.org/3/search/multi?api_key=87241fc3a18a22a33f8ce28edf4e796a&query={}".format(self.evntNm)
                             if len(year) > 0:
                                 url_tmdb += "&primary_release_year={}&year={}".format(year, year)
-                            jp = json.load(urllib2.urlopen(url_tmdb))
+                            jp = json.load(urllib.request.urlopen(url_tmdb))
                             tmdb_id = (jp['results'][0]['id'])
                             if tmdb_id:
                                 m_type = (jp['results'][0]['media_type'])
@@ -115,7 +117,7 @@ class speedy_banner(Renderer):
                                 else:
                                     mm_type = m_type
                                 url_fanart = "https://webservice.fanart.tv/v3/{}/{}?api_key=6d231536dea4318a88cb2520ce89473b".format(m_type, tmdb_id)
-                                fjs = json.load(urllib2.urlopen(url_fanart))
+                                fjs = json.load(urllib.request.urlopen(url_fanart))
                                 if fjs:
                                     if m_type == "movies":
                                         mm_type = (jp['results'][0]['media_type'])
@@ -125,11 +127,11 @@ class speedy_banner(Renderer):
                         except:
                             try:
                                 url_maze = "http://api.tvmaze.com/singlesearch/shows?q={}".format(self.evntNm)
-                                mj = json.load(urllib2.urlopen(url_maze))
+                                mj = json.load(urllib.request.urlopen(url_maze))
                                 poster = (mj['externals']['thetvdb'])
                                 if poster:
                                     url_tvdb = "https://thetvdb.com/api/GetSeries.php?seriesname={}".format(poster)
-                                    url_read = urllib2.urlopen(url_tvdb).read()
+                                    url_read = urllib.request.urlopen(url_tvdb).read()
                                     series_id = re.findall('<seriesid>(.*?)</seriesid>', url_read, re.I)[0]
                                     banner_img = re.findall('<banner>(.*?)</banner>', url_read, re.I)[0]
                                     if banner_img:
@@ -138,7 +140,7 @@ class speedy_banner(Renderer):
                                     if series_id:
                                         try:
                                             url_fanart = "https://webservice.fanart.tv/v3/{}/{}?api_key=6d231536dea4318a88cb2520ce89473b".format(m_type, series_id)
-                                            fjs = json.load(urllib2.urlopen(url_fanart))
+                                            fjs = json.load(urllib.request.urlopen(url_fanart))
                                             if fjs:
                                                 if m_type == "movies":
                                                     mm_type = (jp['results'][0]['media_type'])
@@ -176,5 +178,5 @@ class speedy_banner(Renderer):
         if not os.path.isdir(path_folder):
             os.makedirs(path_folder)
         with open(self.dwn_banner, 'wb') as f:
-            f.write(urllib2.urlopen(self.url_banner).read())
+            f.write(urllib.request.urlopen(self.url_banner).read())
             f.close()

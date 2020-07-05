@@ -5,11 +5,13 @@ from Renderer import Renderer
 from enigma import ePixmap, ePicLoad
 from Components.AVSwitch import AVSwitch
 from Components.Pixmap import Pixmap
-from urllib import quote
 import json
 import re
 import os
-import urllib2
+
+from six.moves import urllib
+from six.moves.urllib.parse import quote
+
 
 if os.path.isdir("/media/usb"):
     path_folder = "/media/usb/poster/"
@@ -106,7 +108,7 @@ class speedy_poster(Renderer):
 
     def savePoster(self):
         url_json = "https://api.themoviedb.org/3/search/%s?api_key=3c3efcf47c3577558812bb9d64019d65&query=%s"%(self.srch, quote(self.evntNm))
-        jp = json.load(urllib2.urlopen(url_json))
+        jp = json.load(urllib.request.urlopen(url_json))
         poster = (jp['results'][0]['poster_path'])
         url_poster = "https://image.tmdb.org/t/p/w185_and_h278_bestv2%s"%(poster)
         if not os.path.isdir(path_folder):
@@ -114,7 +116,7 @@ class speedy_poster(Renderer):
         dwn_poster = path_folder + "%s.jpg"%(self.evntNm)
         if not os.path.exists(dwn_poster):
             with open(dwn_poster.lower(), 'wb') as f:
-                f.write(urllib2.urlopen(url_poster).read())
+                f.write(urllib.request.urlopen(url_poster).read())
                 f.close()
         return
 

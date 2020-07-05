@@ -4,12 +4,15 @@
 from Renderer import Renderer
 from Components.VariableText import VariableText
 from enigma import eLabel, eTimer
-from urllib2 import urlopen, quote
 
 import json
 import re
 import os
+from six.moves.urllib.request import urlopen
 import socket
+
+from six.moves.urllib.parse import quote
+
 
 omdb_api = '4d13638a'
 

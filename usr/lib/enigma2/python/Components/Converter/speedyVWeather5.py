@@ -30,6 +30,9 @@ from Components.config import getConfigListEntry, ConfigEnableDisable, \
 from Components.config import config
 from Screens.MessageBox import MessageBox
 from Tools import Notifications
+import six
+import six
+from six.moves import configparser
 from twisted.web.client import getPage
 from operator import itemgetter
 from enigma import eTimer
@@ -48,8 +51,6 @@ import shutil
 from socket import *
 import threading
 import re
-import string
-import ConfigParser
 import stat
 import glob
 
@@ -550,7 +551,7 @@ class WeatherData:
         "imagetextcolor": "#00dddddd",
         }
         if os.path.isfile(pluginpath + 'ImageTools.cfg'):
-            Config = ConfigParser.ConfigParser(self.defaults)
+            Config = configparser.ConfigParser(self.defaults)
             Config.read(os.path.join(pluginpath, 'ImageTools.cfg'))
             self.useImageTools = Config.getboolean('ImageTools', 'useImageTools')
             self.ImageBackgroundColor = Config.get('ImageTools', 'ImageBackgroundColor')
@@ -998,7 +999,7 @@ class WeatherData:
                             write_log("Statuscode : " + str(r.status_code) + " : " + str(r.text))
                     if isDWD:
                         if os.path.isfile(pluginpath + 'ImageTools.cfg'):
-                            Config = ConfigParser.ConfigParser(self.defaults)
+                            Config = configparser.ConfigParser(self.defaults)
                             Config.read(os.path.join(pluginpath, 'ImageTools.cfg'))
                             self.useImageTools = Config.getboolean('ImageTools', 'useimagetools')
                             self.ImageBackgroundColor = Config.get('ImageTools', 'imagebackgroundcolor')
@@ -1584,9 +1585,9 @@ class WeatherData:
                 if text[:2] == "&#":
                     try:
                         if text[:3] == "&#x":
-                            return unichr(int(text[3:-1], 16))
+                            return six.unichr(int(text[3:-1], 16))
                         else:
-                            return unichr(int(text[2:-1]))
+                            return six.unichr(int(text[2:-1]))
                     except ValueError:
                         pass
                 elif text[:1] == "&":
@@ -1595,11 +1596,11 @@ class WeatherData:
                     if entity:
                         if entity[:2] == "&#":
                             try:
-                                return unichr(int(entity[2:-1]))
+                                return six.unichr(int(entity[2:-1]))
                             except ValueError:
                                 pass
                         else:
-                            return unicode(entity, "iso-8859-1")
+                            return six.text_type(entity, "iso-8859-1")
                 return text # leave as is
             return re.sub("(?s)<[^>]*>|&#?\w+;", fixup, text)
         if data is not None:
@@ -1645,9 +1646,9 @@ class WeatherData:
                             dstemp = strip_html(child.text.encode('utf8')).replace('Today', 'Heute\n').replace('Tomorrow', '\nMorgen\n').replace('deutsch', '').replace(' CET', '')
                             dates = re.findall(r'\d{2}.\d{2}.\d{4} \d{2}:\d{2}', dstemp)
                             for idx in range(0, 4):
-                                en = string.find(dstemp, 'english')
+                                en = dstemp.find('english')
                                 if en > 0:
-                                    de = string.find(dstemp, '.', en) + 1
+                                    de = dstemp.find('.', en) + 1
                                     if de > 0:
                                         dstemp = dstemp[:en] + dstemp[de:]
                                     else:

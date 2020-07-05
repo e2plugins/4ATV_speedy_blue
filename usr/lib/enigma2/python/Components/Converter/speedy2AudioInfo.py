@@ -4,6 +4,10 @@ from Components.Converter.Converter import Converter
 from Components.Element import cached
 from Poll import Poll
 import re
+
+import six
+
+
 try:
     from enigma import iAudioType_ENUMS as iAt
     AUDIO_FORMATS = {iAt.atDTSHD: ('DTS-HD', _('DTS-HD'), 1),
@@ -106,7 +110,7 @@ class speedy2AudioInfo(Poll, Converter, object):
         return description_str
 
     def get_short(self, audioName):
-        for return_codec, codecs in sorted(self.codecs.iteritems()):
+        for return_codec, codecs in sorted(six.iteritems(self.codecs)):
             for codec in codecs:
                 if codec in audioName:
                     codec = return_codec.split('_')[1]

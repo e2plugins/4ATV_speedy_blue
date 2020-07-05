@@ -8,7 +8,7 @@
 #      <convert type="infoMovie">STARS</convert>
 #    </widget>
 # <widget source="session.Event_Now" render="pricon" position="59,471" size="60,60" zPosition="3" alphatest="blend">
-# 	<convert type="infoMovie">PARENTAL_RATING</convert>
+#       <convert type="infoMovie">PARENTAL_RATING</convert>
 # </widget>
 from Components.Converter.Converter import Converter
 from Components.Element import cached
@@ -24,129 +24,129 @@ api = '4d13638a'
 
 class speedyinfoMovie(Converter, object):
 
-	def __init__(self, type):
-		Converter.__init__(self, type)
-		self.type = type
-		self.delay()
+    def __init__(self, type):
+        Converter.__init__(self, type)
+        self.type = type
+        self.delay()
 
-	@cached
-	def getText(self):
-		event = self.source.event
-		if event:
-			if self.type == 'INFO':
-				try:
-					evnt = event.getEventName()
-					try:
-						p = '((.*?))[;=:-].*?(.*?)'
-						e1 = re.search(p, evnt)
-						ffilm = re.sub('\W+','+', e1.group(1))
-					except:
-						w = re.sub("([\(\[]).*?([\)\]])", " ", evnt)
-						ffilm = re.sub('\W+','+', w)
-					url = 'https://www.omdbapi.com/?apikey=%s&t=%s' %(api, ffilm.lower())
-					data = json.load(urlopen(url))
-					
-					title = data['Title']
-					rtng = data['imdbRating']
-					country = data['Country']
-					year = data['Year']
-					rate = data['Rated']
-					genre = data['Genre']
-					award = data['Awards']
+    @cached
+    def getText(self):
+        event = self.source.event
+        if event:
+            if self.type == 'INFO':
+                try:
+                    evnt = event.getEventName()
+                    try:
+                        p = '((.*?))[;=:-].*?(.*?)'
+                        e1 = re.search(p, evnt)
+                        ffilm = re.sub('\W+','+', e1.group(1))
+                    except:
+                        w = re.sub("([\(\[]).*?([\)\]])", " ", evnt)
+                        ffilm = re.sub('\W+','+', w)
+                    url = 'https://www.omdbapi.com/?apikey=%s&t=%s' %(api, ffilm.lower())
+                    data = json.load(urlopen(url))
 
-					if title:
-						open("/tmp/rating","w").write("{}\n{}".format(rtng, rate))
-						return "\nTitle : {} \nImdb : {} \nYear : {}, {} \nRate : {} \nGenre : {} \nAwards : {}".format(title, rtng, str(country), str(year.encode('utf-8')), rate, genre, award)
-					else:
-						if os.path.exists("/tmp/rating"):
-							os.remove("/tmp/rating")
-				except:
-					if os.path.exists("/tmp/rating"):
-						os.remove("/tmp/rating")
-					return ""
+                    title = data['Title']
+                    rtng = data['imdbRating']
+                    country = data['Country']
+                    year = data['Year']
+                    rate = data['Rated']
+                    genre = data['Genre']
+                    award = data['Awards']
 
-			fd = event.getShortDescription() + "\n" + event.getExtendedDescription()
-			if self.type == 'PARENTAL_RATING':
-				try:
-					ppr = ["[aA]b ((\d+))", "[+]((\d+))"]
-					for i in ppr:
-						prr = re.search(i, fd)
-						if prr:
-							return prr.group(1)
-					else:
-						if os.path.exists("/tmp/rating"):
-							with open("/tmp/rating") as f:
-								prate = f.readlines()[1]
-							if prate == "TV-Y7":
-								rate = "6"
-							elif prate == "TV-14":
-								rate = "12"
-							elif prate == "TV-PG":
-								rate = "16"
-							elif prate == "TV-MA":
-								rate = "18"
-							elif prate == "PG-13":
-								rate = "16"
-							elif prate == "R":
-								rate = "18"
-							else:
-								pass
-								
-							if rate:
-								return rate
-				except:
-					return ""
+                    if title:
+                        open("/tmp/rating","w").write("{}\n{}".format(rtng, rate))
+                        return "\nTitle : {} \nImdb : {} \nYear : {}, {} \nRate : {} \nGenre : {} \nAwards : {}".format(title, rtng, str(country), str(year.encode('utf-8')), rate, genre, award)
+                    else:
+                        if os.path.exists("/tmp/rating"):
+                            os.remove("/tmp/rating")
+                except:
+                    if os.path.exists("/tmp/rating"):
+                        os.remove("/tmp/rating")
+                    return ""
 
+            fd = event.getShortDescription() + "\n" + event.getExtendedDescription()
+            if self.type == 'PARENTAL_RATING':
+                try:
+                    ppr = ["[aA]b ((\d+))", "[+]((\d+))"]
+                    for i in ppr:
+                        prr = re.search(i, fd)
+                        if prr:
+                            return prr.group(1)
+                    else:
+                        if os.path.exists("/tmp/rating"):
+                            with open("/tmp/rating") as f:
+                                prate = f.readlines()[1]
+                            if prate == "TV-Y7":
+                                rate = "6"
+                            elif prate == "TV-14":
+                                rate = "12"
+                            elif prate == "TV-PG":
+                                rate = "16"
+                            elif prate == "TV-MA":
+                                rate = "18"
+                            elif prate == "PG-13":
+                                rate = "16"
+                            elif prate == "R":
+                                rate = "18"
+                            else:
+                                pass
 
-		else:
-			if os.path.exists("/tmp/rating"):
-				os.remove("/tmp/rating")
-			return ""
-
-	text = property(getText)
-
-	@cached
-	def getValue(self):
-		try:
-			if self.type == 'STARS':
-				rating = "/tmp/rating"
-				if os.path.exists(rating):
-					with open(rating) as f:
-						rating = f.readlines()[0]
-						if rating != "N/A":
-							return int(10*(float(rating)))
-				else:
-					event = self.source.event
-					if event:
-						evnt = event.getEventName()
-						try:
-							p = '((.*?))[;=:-].*?(.*?)'
-							e1 = re.search(p, evnt)
-							ffilm = re.sub('\W+','+', e1.group(1))
-						except:
-							w = re.sub("([\(\[]).*?([\)\]])", " ", evnt)
-							ffilm = re.sub('\W+','+', w)
-						url = 'https://www.omdbapi.com/?apikey=%s&t=%s' %(api, ffilm.lower())
-						data = json.load(urlopen(url))
-						rating = data['imdbRating']
-						if rating != "N/A":
-							return int(10*(float(rating)))
-						else:
-							return 0
-						
-						
-		except:
-			return 0
-
-	value = property(getValue)
-	range = 100
+                            if rate:
+                                return rate
+                except:
+                    return ""
 
 
+        else:
+            if os.path.exists("/tmp/rating"):
+                os.remove("/tmp/rating")
+            return ""
+
+    text = property(getText)
+
+    @cached
+    def getValue(self):
+        try:
+            if self.type == 'STARS':
+                rating = "/tmp/rating"
+                if os.path.exists(rating):
+                    with open(rating) as f:
+                        rating = f.readlines()[0]
+                        if rating != "N/A":
+                            return int(10*(float(rating)))
+                else:
+                    event = self.source.event
+                    if event:
+                        evnt = event.getEventName()
+                        try:
+                            p = '((.*?))[;=:-].*?(.*?)'
+                            e1 = re.search(p, evnt)
+                            ffilm = re.sub('\W+','+', e1.group(1))
+                        except:
+                            w = re.sub("([\(\[]).*?([\)\]])", " ", evnt)
+                            ffilm = re.sub('\W+','+', w)
+                        url = 'https://www.omdbapi.com/?apikey=%s&t=%s' %(api, ffilm.lower())
+                        data = json.load(urlopen(url))
+                        rating = data['imdbRating']
+                        if rating != "N/A":
+                            return int(10*(float(rating)))
+                        else:
+                            return 0
+
+
+        except:
+            return 0
+
+    value = property(getValue)
+    range = 100
 
 
 
-	def delay(self):
-		self.timer = eTimer()
-		self.timer.callback.append(self.getText)
-		self.timer.callback.append(self.getValue)
-		self.timer.start(100, True)
+
+
+    def delay(self):
+        self.timer = eTimer()
+        self.timer.callback.append(self.getText)
+        self.timer.callback.append(self.getValue)
+        self.timer.start(100, True)

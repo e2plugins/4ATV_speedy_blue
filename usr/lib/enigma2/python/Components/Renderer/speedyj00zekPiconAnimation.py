@@ -17,7 +17,7 @@
 #    but WITHOUT ANY WARRANTY; without even the implied warranty of
 #    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 #    GNU General Public License for more details.
-#    
+#
 #    To use it do the following:
 #       - download package of animated picons, for example from my opkg
 #       - write them in the animatedPicons folder on mounted device or in /usr/share/enigma2/
@@ -33,13 +33,13 @@
 #       - to set speed put '.ctrl' file  in the pngs folder containing 'delay=TIME' where TIME is miliseconds to wait between frames
 #       - to overwrite skin setting use config attributes from your own plugin or use UserSkin which has GUI to present them
 #       - to disable user settings (see above) put lockpath="True" attribute in widget definition
-#       - to randomize animations put all in the subfolders of main empy animations folder 
+#       - to randomize animations put all in the subfolders of main empy animations folder
 #                 Example:
 #                         create /usr/shareenigma2/animatedPicons/ EMPTY folder
 #                         create /usr/shareenigma2/animatedPicons/Flara subfolder with animation png's
 #                         create /usr/shareenigma2/animatedPicons/OldMovie subfolder with second animation png's
 #
-####################################################################### 
+#######################################################################
 from Tools.LoadPixmap import LoadPixmap
 from Components.Pixmap import Pixmap
 from Renderer import Renderer
@@ -50,9 +50,9 @@ from Components.Harddisk import harddiskmanager
 from random import randint
 import os
 
-config.plugins.j00zekPiconAnimation = ConfigSubsection() 
-config.plugins.j00zekPiconAnimation.UserPathEnabled = ConfigYesNo(default = False) 
-config.plugins.j00zekPiconAnimation.UserPath = ConfigDirectory(default = "")  
+config.plugins.j00zekPiconAnimation = ConfigSubsection()
+config.plugins.j00zekPiconAnimation.UserPathEnabled = ConfigYesNo(default = False)
+config.plugins.j00zekPiconAnimation.UserPath = ConfigDirectory(default = "")
 ##### write log in /tmp folder #####
 DBG = False
 try:
@@ -183,10 +183,10 @@ class speedyj00zekPiconAnimation(Renderer):
     def doSuspend(self, suspended):
         if DBG: j00zekDEBUG('[j00zekPiconAnimation]:[doSuspend] >>> suspended=%s' % suspended)
         if suspended:
-                self.changed((self.CHANGED_CLEAR,))
+            self.changed((self.CHANGED_CLEAR,))
         else:
-                self.changed((self.CHANGED_DEFAULT,))
-            
+            self.changed((self.CHANGED_DEFAULT,))
+
     def loadPNGsSubFolders(self, animPath):
         self.picsFolder = []
         if len(self.pics) == 0 and os.path.exists(animPath):
@@ -197,7 +197,7 @@ class speedyj00zekPiconAnimation(Renderer):
                         self.picsFolder.append(os.path.join(animPath, x))
                         if DBG: j00zekDEBUG('[j00zekPiconAnimation]]:[loadPNGsSubFolders] found *.png in subfolder "%s"' % os.path.join(animPath, x))
                         break
-                    
+
     def loadPNGsAnim(self, animPath):
         if animPath == self.pixmaps: return False
         if os.path.exists(animPath):
@@ -228,12 +228,12 @@ class speedyj00zekPiconAnimation(Renderer):
         else:
             if DBG: j00zekDEBUG('[j00zekPiconAnimation]:[loadPNGsAnim] Path "%s" does NOT exist.' % (animPath))
         return False
-         
-      
+
+
     def changed(self, what):
         if DBG: j00zekDEBUG('[j00zekPiconAnimation]:[changed] >>>')
         if self.instance:
-            self.instance.setScale(1) 
+            self.instance.setScale(1)
             if DBG: j00zekDEBUG('\t\t what[0]=%s(%s), self.doAnim=%s' % (self.what[int(what[0])], what[0], self.doAnim))
             if what[0] == self.CHANGED_CLEAR:
                 if not self.animTimer is None: self.animTimer.stop()

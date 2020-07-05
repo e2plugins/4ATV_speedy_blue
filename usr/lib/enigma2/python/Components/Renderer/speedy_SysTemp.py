@@ -42,4 +42,3 @@ class speedy_SysTemp(Renderer, VariableText):
 
     def onHide(self):
         self.suspended = True
-

@@ -5,14 +5,14 @@ from Components.Element import cached
 
 class speedyAlwaysTrue(Converter, object):
 
-	def __init__(self, type):
-		Converter.__init__(self, type)
+    def __init__(self, type):
+        Converter.__init__(self, type)
 
-	@cached
-	def getBoolean(self):
-		return True
-		
-	boolean = property(getBoolean)
+    @cached
+    def getBoolean(self):
+        return True
 
-	def changed(self, what):
-		Converter.changed(self, what)
+    boolean = property(getBoolean)
+
+    def changed(self, what):
+        Converter.changed(self, what)

@@ -1,11 +1,11 @@
 
 
-from Renderer import Renderer 
-from enigma import ePixmap, eTimer 
-from Tools.Directories import fileExists, SCOPE_SKIN_IMAGE, SCOPE_CURRENT_SKIN, resolveFilename 
-from Tools.LoadPixmap import LoadPixmap 
-from Components.Pixmap import Pixmap 
-from Components.config import * 
+from Renderer import Renderer
+from enigma import ePixmap, eTimer
+from Tools.Directories import fileExists, SCOPE_SKIN_IMAGE, SCOPE_CURRENT_SKIN, resolveFilename
+from Tools.LoadPixmap import LoadPixmap
+from Components.Pixmap import Pixmap
+from Components.config import *
 
 class speedyPiconProv(Renderer):
     __module__ = __name__
@@ -58,9 +58,9 @@ class speedyPiconProv(Renderer):
                     self.nameCache['default'] = pngname
             if (self.pngname != pngname):
                 self.pngname = pngname
-               
+
                 self.runanim()
-                    
+
                 self.instance.setPixmapFromFile(self.pngname)
 
 
@@ -78,8 +78,8 @@ class speedyPiconProv(Renderer):
     def runanim(self):
         self.slide = 8
         animok = True
-       
-           
+
+
         if (animok == True):
             pathanim = '/usr/share/enigma2/hd_glass11/anim/a'
             self.pics = []
@@ -103,7 +103,3 @@ class speedyPiconProv(Renderer):
         else:
             self.timer.stop()
             self.instance.setPixmapFromFile(self.pngname)
-
-
-
-

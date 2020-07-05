@@ -1,7 +1,7 @@
-﻿from Components.Converter.Converter import Converter 
-from Components.Element import cached 
+﻿from Components.Converter.Converter import Converter
+from Components.Element import cached
 from Poll import Poll
-from enigma import eConsoleAppContainer 
+from enigma import eConsoleAppContainer
 from os import system, path, popen
 from Tools.Directories import fileExists
 
@@ -24,7 +24,7 @@ class speedycpuExtra(Poll, Converter):
         self.short_list = True
         self.cpu_count = 0
         self.prev_info = self.getCpuInfo(self.CPU_CALC)
-        
+
         if not type or type == "Total":
             self.type = self.CPU_TOTAL
             self.sfmt = "CPU: $0"
@@ -105,7 +105,7 @@ class speedycpuExtra(Poll, Converter):
                     load = ""
                 cpuload = load.replace("\n", "").replace(" ","")
                 return ("CPU Load: %s") % cpuload
-                   
+
         elif (self.type == self.TEMPERATURE):
             while True:
                 systemp = ""
@@ -153,7 +153,7 @@ class speedycpuExtra(Poll, Converter):
                 for line in open("/proc/cpuinfo").readlines():
                     line = [x.strip() for x in line.strip().split(":")]
                     if line[0] == "cpu MHz":
-                         cpuspeed = "%1.0f" % float(line[1])
+                        cpuspeed = "%1.0f" % float(line[1])
                 if not cpuspeed:
                     try:
                         cpuspeed = int(open("/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq").read()) / 1000

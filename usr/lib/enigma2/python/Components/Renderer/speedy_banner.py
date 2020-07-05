@@ -157,7 +157,7 @@ class speedy_banner(Renderer):
     def year(self):
         try:
             sd = self.event.getShortDescription() + "\n" + self.event.getExtendedDescription()
-            pattern = ["(19[0-9][0-9])","(20[0-9][0-9])"]
+            pattern = ["(19[0-9][0-9])", "(20[0-9][0-9])"]
             for i in pattern:
                 yr = re.search(i, sd)
                 if yr:
@@ -175,6 +175,6 @@ class speedy_banner(Renderer):
     def saveBanner(self):
         if not os.path.isdir(path_folder):
             os.makedirs(path_folder)
-        with open(self.dwn_banner,'wb') as f:
+        with open(self.dwn_banner, 'wb') as f:
             f.write(urllib2.urlopen(self.url_banner).read())
             f.close()

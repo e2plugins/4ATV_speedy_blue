@@ -172,7 +172,7 @@ class speedyHDECMLine(Poll, Converter, object):
                     if len(r) > 1 :
                         camInfo[r[0].strip('\n\r\t ')] = r[1].strip('\n\r\t ')
 
-                caid = camInfo.get('caid','')
+                caid = camInfo.get('caid', '')
 
                 caid = caid.lstrip('0x')
                 caid = caid.upper()
@@ -201,25 +201,25 @@ class speedyHDECMLine(Poll, Converter, object):
 
                 caid = 'CAID: ' + caid
 
-                prov = camInfo.get('prov','')
+                prov = camInfo.get('prov', '')
                 prov = prov.lstrip("0x")
                 prov = prov.upper()
                 prov = prov.zfill(6)
                 prov = 'Provider: ' + prov
 
-                ecmtime = camInfo.get('ecm time','')
+                ecmtime = camInfo.get('ecm time', '')
                 if ecmtime:
                     if "msec" in ecmtime:
                         ecmtime = 'ECM: ' + ecmtime
                     else:
                         ecmtime = 'ECM: ' + ecmtime     + ' s'
 
-                hops = 'Hops: ' + str(camInfo.get('hops',''))
-                address = 'Server: ' + str(camInfo.get('address',''))
-                reader = 'Reader: ' + str(camInfo.get('reader',''))
-                source = 'Source: ' + str(camInfo.get('source',''))
+                hops = 'Hops: ' + str(camInfo.get('hops', ''))
+                address = 'Server: ' + str(camInfo.get('address', ''))
+                reader = 'Reader: ' + str(camInfo.get('reader', ''))
+                source = 'Source: ' + str(camInfo.get('source', ''))
 
-                using = str(camInfo.get('using',''))
+                using = str(camInfo.get('using', ''))
 
                 active = ''
 

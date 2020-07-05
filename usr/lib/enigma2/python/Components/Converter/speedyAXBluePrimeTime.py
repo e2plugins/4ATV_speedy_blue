@@ -82,17 +82,17 @@ class speedyAXBluePrimeTime(Converter, object):
     text = property(getText)
 
     def formatEvent(self, event):
-        begin = strftime("%H:%M",localtime(event.getBeginTime()))
-        end = strftime("%H:%M",localtime(event.getBeginTime() + event.getDuration()))
+        begin = strftime("%H:%M", localtime(event.getBeginTime()))
+        end = strftime("%H:%M", localtime(event.getBeginTime() + event.getDuration()))
         title = event.getEventName()#[:self.titleWidth]
         duration = "%d min" %(event.getDuration() / 60)
         if self.showDuration == self.withDuration:
             f = "{begin} - {end:10}{title:<} -  {duration}"
-            return f.format(begin = begin, end = end,title = title, duration = duration)
+            return f.format(begin = begin, end = end, title = title, duration = duration)
         elif self.showDuration == self.onlyDuration:
             return duration
         elif self.showDuration == self.noDuration:
             f = "{begin} - {end:10}{title:<}"
-            return f.format(begin = begin, end = end,title = title)
+            return f.format(begin = begin, end = end, title = title)
         else:
             return ""

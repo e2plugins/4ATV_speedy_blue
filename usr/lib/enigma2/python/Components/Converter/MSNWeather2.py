@@ -312,14 +312,14 @@ class MSNWeather2(Poll, Converter, object):
         min = float(strftime('%M'))
         sec = float(strftime('%S'))
         info, weze = 'n/a', ''
-        msnweather = {'Vfd':'', 'Date':'', 'Shortdate':'', 'Day':'', 'Shortday':'','Location':'', 'Timezone':'', 'Latitude':'', 'Longitude':'',\
-                'Julianday':'', 'Sunrise':'', 'Sunset':'', 'Solstice':'', 'Moonrise':'', 'Moonset':'', 'Moondist':'', 'Moonphase':'', 'Moonlight':'', 'PiconMoon':'1',\
-                'Temp':'', 'Picon':'', 'Skytext':'', 'Feelslike':'', 'Humidity':'', 'Wind':'', 'Windspeed':'',\
-                'Date0':'', 'Shortdate0':'', 'Day0':'', 'Shortday0':'', 'Temp0':'', 'Lowtemp0':'', 'Hightemp0':'', 'Picon0':'', 'Skytext0':'', 'Precip0':'',\
-                'Date1':'', 'Shortdate1':'', 'Day1':'', 'Shortday1':'', 'Temp1':'', 'Lowtemp1':'', 'Hightemp1':'', 'Picon1':'', 'Skytext1':'', 'Precip1':'',\
-                'Date2':'', 'Shortdate2':'', 'Day2':'', 'Shortday2':'', 'Temp2':'', 'Lowtemp2':'', 'Hightemp2':'', 'Picon2':'', 'Skytext2':'', 'Precip2':'',\
-                'Date3':'', 'Shortdate3':'', 'Day3':'', 'Shortday3':'', 'Temp3':'', 'Lowtemp3':'', 'Hightemp3':'', 'Picon3':'', 'Skytext3':'', 'Precip3':'',\
-                'Date4':'', 'Shortdate4':'', 'Day4':'', 'Shortday4':'', 'Temp4':'', 'Lowtemp4':'', 'Hightemp4':'', 'Picon4':'', 'Skytext4':'', 'Precip4':'',\
+        msnweather = {'Vfd': '', 'Date': '', 'Shortdate': '', 'Day': '', 'Shortday': '', 'Location': '', 'Timezone': '', 'Latitude': '', 'Longitude': '',\
+                'Julianday': '', 'Sunrise': '', 'Sunset': '', 'Solstice': '', 'Moonrise': '', 'Moonset': '', 'Moondist': '', 'Moonphase': '', 'Moonlight': '', 'PiconMoon': '1',\
+                'Temp': '', 'Picon': '', 'Skytext': '', 'Feelslike': '', 'Humidity': '', 'Wind': '', 'Windspeed': '',\
+                'Date0': '', 'Shortdate0': '', 'Day0': '', 'Shortday0': '', 'Temp0': '', 'Lowtemp0': '', 'Hightemp0': '', 'Picon0': '', 'Skytext0': '', 'Precip0': '',\
+                'Date1': '', 'Shortdate1': '', 'Day1': '', 'Shortday1': '', 'Temp1': '', 'Lowtemp1': '', 'Hightemp1': '', 'Picon1': '', 'Skytext1': '', 'Precip1': '',\
+                'Date2': '', 'Shortdate2': '', 'Day2': '', 'Shortday2': '', 'Temp2': '', 'Lowtemp2': '', 'Hightemp2': '', 'Picon2': '', 'Skytext2': '', 'Precip2': '',\
+                'Date3': '', 'Shortdate3': '', 'Day3': '', 'Shortday3': '', 'Temp3': '', 'Lowtemp3': '', 'Hightemp3': '', 'Picon3': '', 'Skytext3': '', 'Precip3': '',\
+                'Date4': '', 'Shortdate4': '', 'Day4': '', 'Shortday4': '', 'Temp4': '', 'Lowtemp4': '', 'Hightemp4': '', 'Picon4': '', 'Skytext4': '', 'Precip4': '',\
                 }
         low0weather, hi0weather, low1weather, hi1weather, low2weather, hi2weather, low3weather, hi3weather, low4weather, hi4weather = '', '', '', '', '', '', '', '', '', ''
         timezone, latitude, longitude = '', '', ''
@@ -621,7 +621,7 @@ class MSNWeather2(Poll, Converter, object):
         Mdist = int(384404 / ER) # расстояние до луны км
         MLat = EB # - широта луны
         MLong = LM + EL # - долгота луны
-        RA = math.atan2((math.sin(MLong * DEG2RAD) * math.cos(OEM * DEG2RAD) - math.tan(MLat * DEG2RAD) * math.sin(OEM * DEG2RAD)) , math.cos(MLong * DEG2RAD)) * RAD2DEG # прямое восхождение луны
+        RA = math.atan2((math.sin(MLong * DEG2RAD) * math.cos(OEM * DEG2RAD) - math.tan(MLat * DEG2RAD) * math.sin(OEM * DEG2RAD)), math.cos(MLong * DEG2RAD)) * RAD2DEG # прямое восхождение луны
         DEC = math.asin(math.sin(MLat * DEG2RAD) * math.cos(OEM * DEG2RAD) + math.cos(MLat * DEG2RAD) * math.sin(OEM * DEG2RAD) * math.sin(MLong * DEG2RAD)) * RAD2DEG # склонение луны
         BETA = math.acos((0.002094 - math.sin(DEC * DEG2RAD) * math.sin(lat * DEG2RAD)) / (math.cos(DEC * DEG2RAD) * math.cos(lat * DEG2RAD))) * RAD2DEG
 

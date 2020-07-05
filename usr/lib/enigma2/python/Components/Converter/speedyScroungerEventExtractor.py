@@ -56,7 +56,7 @@ class speedyScroungerEventExtractor (Converter, object):
 
                     sep = ' %s ' % str(h.unescape('&#xB7;'))
                     return sep.join(rets)
-                except Exception, e:
+                except Exception as e:
                     return "[Error] getText: '%s'  %s" % (self.logType, str(e))
         return ""
     text = property(getText)
@@ -106,7 +106,7 @@ class speedyScroungerEventExtractor (Converter, object):
                     return sep.join(wordList)
             else:
                 return ""
-        except Exception, e:
+        except Exception as e:
             return "[Error] getSubtitle: %s" % (str(e))
 
         return ""

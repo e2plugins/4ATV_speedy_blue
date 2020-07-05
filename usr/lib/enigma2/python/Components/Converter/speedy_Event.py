@@ -57,7 +57,7 @@ class speedy_Event(Converter, object):
         for i in pattern:
             seg = re.search(i, fd)
             if seg:
-                if re.search("Episodio",i):
+                if re.search("Episodio", i):
                     return "S"+seg.group(2).zfill(2)+"E"+seg.group(1).zfill(2)
                 else :
                     return "S"+seg.group(1).zfill(2)+"E"+seg.group(2).zfill(2)

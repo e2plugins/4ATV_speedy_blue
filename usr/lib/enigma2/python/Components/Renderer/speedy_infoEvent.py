@@ -64,7 +64,7 @@ class speedy_infoEvent(Renderer, VariableText):
 
                     if Title != "N/A" or Title != "":
                         open("/tmp/rating", "w").write("%s\n%s"%(imdbRating, Rated))
-                        self.text = "Title : %s\nYear : %s\nImdb : %s\nCountry: %s\nRate: %s\nGenre : %s\nAwards : %s" %(str(Title),str(Year),str(imdbRating),str(Country),str(Rated),str(Genre),str(Awards))
+                        self.text = "Title : %s\nYear : %s\nImdb : %s\nCountry: %s\nRate: %s\nGenre : %s\nAwards : %s" %(str(Title), str(Year), str(imdbRating), str(Country), str(Rated), str(Genre), str(Awards))
                     else:
                         if os.path.exists("/tmp/rating"):
                             os.remove("/tmp/rating")

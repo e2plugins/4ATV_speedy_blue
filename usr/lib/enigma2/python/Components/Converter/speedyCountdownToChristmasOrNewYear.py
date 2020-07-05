@@ -69,14 +69,14 @@ class speedyCountdownToChristmasOrNewYear(Converter, object):
             elif final < 0:
                 return "Weihnachten ist vorbei, bis zum naechsten Jahr!"
         else:
-            leaving_date = datetime.strptime('%s-01-01 00:00:00' % str(int(now.year)+1),'%Y-%m-%d %H:%M:%S')
-            return '%d Tage, %d Std. %d Min. %d Sek.' % self.daysHoursMinutesSecondsFromSeconds(self.dateDiffInSeconds(now,leaving_date)) +  " bis zum neuen Jahr!"
+            leaving_date = datetime.strptime('%s-01-01 00:00:00' % str(int(now.year)+1), '%Y-%m-%d %H:%M:%S')
+            return '%d Tage, %d Std. %d Min. %d Sek.' % self.daysHoursMinutesSecondsFromSeconds(self.dateDiffInSeconds(now, leaving_date)) +  " bis zum neuen Jahr!"
 
-    def dateDiffInSeconds(self,date1, date2):
+    def dateDiffInSeconds(self, date1, date2):
         timedelta = date2 - date1
         return timedelta.days * 24 * 3600 + timedelta.seconds
 
-    def daysHoursMinutesSecondsFromSeconds(self,seconds):
+    def daysHoursMinutesSecondsFromSeconds(self, seconds):
         (minutes, seconds) = divmod(seconds, 60)
         (hours, minutes) = divmod(minutes, 60)
         (days, hours) = divmod(hours, 24)

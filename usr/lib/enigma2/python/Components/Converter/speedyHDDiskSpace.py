@@ -45,7 +45,7 @@ class speedyHDDiskSpace(Poll, Converter, object):
         if service:
             if self.type == self.free:
                 try:
-                    stat = statvfs(service.getPath().replace('Latest Recordings',''))
+                    stat = statvfs(service.getPath().replace('Latest Recordings', ''))
                     hdd = stat.f_bfree * stat.f_bsize
                     if hdd > 1099511627776:
                         free = float(hdd/1099511627776.0)
@@ -61,7 +61,7 @@ class speedyHDDiskSpace(Poll, Converter, object):
 
             elif self.type == self.size:
                 try:
-                    stat = statvfs(service.getPath().replace('Latest Recordings',''))
+                    stat = statvfs(service.getPath().replace('Latest Recordings', ''))
                     hddsize = stat.f_blocks * stat.f_bsize
                     if hddsize > 1099511627776:
                         locks = float(hddsize/1099511627776.0)
@@ -77,7 +77,7 @@ class speedyHDDiskSpace(Poll, Converter, object):
 
             elif self.type == self.both:
                 try:
-                    stat = statvfs(service.getPath().replace('Latest Recordings',''))
+                    stat = statvfs(service.getPath().replace('Latest Recordings', ''))
                     hdd = stat.f_bfree * stat.f_bsize
                     hddsize = stat.f_blocks * stat.f_bsize
                     if hdd > 1099511627776:
@@ -99,7 +99,7 @@ class speedyHDDiskSpace(Poll, Converter, object):
                 if "." in str(service.getPath()) or "@" in str(service.getPath()) or "Latest Recordings" in str(service.getPath()):
                     return service.getPath().rsplit('/', 1)[0]
                 else:
-                    return service.getPath().replace('/Latest Recordings','')
+                    return service.getPath().replace('/Latest Recordings', '')
 
         return ""
 

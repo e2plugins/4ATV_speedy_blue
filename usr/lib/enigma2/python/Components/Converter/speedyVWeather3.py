@@ -36,9 +36,9 @@ import os
 config.plugins.VWeather3 = ConfigSubsection()
 config.plugins.VWeather3.refreshInterval = ConfigInteger(default = 60, limits = (30, 300))
 config.plugins.VWeather3.Log = ConfigYesNo(default = True)
-config.plugins.VWeather3.Provider = ConfigSelection(default = "Darksky", choices = [("Darksky", _("Darksky")),("OpenWeatherMap", _("OpenWeatherMap"))])
-config.plugins.VWeather3.CountryCode = ConfigSelection(default = "de", choices = [("bg", _("Bulgarian")),("ca", _("Catalan")),("cz", _("Czech")),("de", _("Deutschland")),("el", _("Greek")),("en", _("English")),("fi", _("Finnish")),("fr", _("Frensh")),("it", _("Italien")),("nl", _("Dutch")),("pl", _("Polish")),("es", _("Spanish")),("tr", _("Turkish"))])# Ländercode nach ISO-3166 Alpha-2
-config.plugins.VWeather3.Units = ConfigSelection(default = "metric", choices = [("metric", _("Celsius")),("imperial", _("Fahrenheit")),("", _("Kelvin"))])      # metric = °Celsius ; imperial = Fahrenheit ; default = Kelvin
+config.plugins.VWeather3.Provider = ConfigSelection(default = "Darksky", choices = [("Darksky", _("Darksky")), ("OpenWeatherMap", _("OpenWeatherMap"))])
+config.plugins.VWeather3.CountryCode = ConfigSelection(default = "de", choices = [("bg", _("Bulgarian")), ("ca", _("Catalan")), ("cz", _("Czech")), ("de", _("Deutschland")), ("el", _("Greek")), ("en", _("English")), ("fi", _("Finnish")), ("fr", _("Frensh")), ("it", _("Italien")), ("nl", _("Dutch")), ("pl", _("Polish")), ("es", _("Spanish")), ("tr", _("Turkish"))])# Ländercode nach ISO-3166 Alpha-2
+config.plugins.VWeather3.Units = ConfigSelection(default = "metric", choices = [("metric", _("Celsius")), ("imperial", _("Fahrenheit")), ("", _("Kelvin"))])      # metric = °Celsius ; imperial = Fahrenheit ; default = Kelvin
 config.plugins.VWeather3.numbers = ConfigInteger(default = 1, limits = (0, 2))
 
 config.plugins.VWeather3.Darksky_apikey = ConfigText(default = "9764f65bf6e4fa4418fdd656f98abc48")
@@ -47,15 +47,15 @@ config.plugins.VWeather3.Darksky_lon = ConfigText(default = "12.3638229")
 config.plugins.VWeather3.Darksky_alerts = ConfigYesNo(default = False)
 
 config.plugins.VWeather3.OpenWeatherMap_apikey = ConfigText(default = "1234567890")
-config.plugins.VWeather3.OpenWeatherMap_geolocation = ConfigSelection(default = "Ort", choices = [("PLZ", _("PLZ")),("Ort", _("Ort"))])
+config.plugins.VWeather3.OpenWeatherMap_geolocation = ConfigSelection(default = "Ort", choices = [("PLZ", _("PLZ")), ("Ort", _("Ort"))])
 config.plugins.VWeather3.OpenWeatherMap_zipcode = ConfigText(default = "40880")
 config.plugins.VWeather3.OpenWeatherMap_place = ConfigText(default = "Ratingen")
 
 weather_data = None
-wdays = ["Sonntag","Montag","Dienstag","Mittwoch","Donnerstag","Freitag","Samstag"]
-swdays = ["So","Mo","Di","Mi","Do","Fr","Sa"]
-wdays_en = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
-swdays_en = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"]
+wdays = ["Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag"]
+swdays = ["So", "Mo", "Di", "Mi", "Do", "Fr", "Sa"]
+wdays_en = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+swdays_en = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
 
 log = config.plugins.VWeather3.Log.value
 numbers = '.' + str(config.plugins.VWeather3.numbers.value) + 'f'
@@ -64,7 +64,7 @@ def write_log(svalue):
     if log:
         t = localtime()
         logtime = '%02d:%02d:%02d' % (t.tm_hour, t.tm_min, t.tm_sec)
-        VWeather3_log = open('/tmp/VWeather3.log',"a")
+        VWeather3_log = open('/tmp/VWeather3.log', "a")
         VWeather3_log.write(str(logtime) + " - " + str(svalue) + "\n")
         VWeather3_log.close()
 
@@ -418,11 +418,11 @@ class WeatherData:
                 url = "http://api.openweathermap.org/data/2.5/forecast?" + geolocation + "&APPID=" + apikey + "&units=" + units + "&lang=" + countrycode
                 if log:
                     write_log("OWM-URL : " + str(url))
-                getPage(url,method = "GET").addCallback(self.GotOpenWeatherMapWeatherData).addErrback(self.downloadError)
+                getPage(url, method = "GET").addCallback(self.GotOpenWeatherMapWeatherData).addErrback(self.downloadError)
                 url = "http://api.openweathermap.org/data/2.5/weather?" + geolocation + "&APPID=" + apikey + "&units=" + units + "&lang=" + countrycode
                 if log:
                     write_log("COWMURL : " + str(url))
-                getPage(url,method = "GET").addCallback(self.GotCurrentOpenWeatherMapWeatherData).addErrback(self.downloadError)
+                getPage(url, method = "GET").addCallback(self.GotCurrentOpenWeatherMapWeatherData).addErrback(self.downloadError)
 
 
     #OpenWeatherMap
@@ -1015,7 +1015,7 @@ class WeatherData:
 
     def convertCurrentDay(self, val):
         value = int(datetime.datetime.fromtimestamp(int(val)).strftime("%w"))
-        skinname = str(config.skin.primary_skin.value).replace("/skin.xml","")
+        skinname = str(config.skin.primary_skin.value).replace("/skin.xml", "")
         if skinname == "Vu_HD_1080P" or skinname == "StyleFHD" or skinname == "AtileHD" or skinname == "MuteSpectator":
             if str(config.plugins.VWeather3.CountryCode.value) != "de":
                 return swdays_en[value]

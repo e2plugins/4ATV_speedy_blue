@@ -181,7 +181,7 @@ class speedy_ServiceInfoEX(Poll, Converter, object):
 
     @cached
     def getText(self):
-        self.stream = { 'apid':"N/A", 'vpid':"N/A", 'sid':"N/A", 'onid':"N/A", 'tsid':"N/A", 'prcpid':"N/A", 'caids':"FTA", 'pmtpid':"N/A", 'txtpid':"N/A", 'xres':"", 'yres':"", 'atype':"", 'vtype':"", 'avtype':"", 'fps':"", 'tbps':"", 'ttype':"",}
+        self.stream = { 'apid': "N/A", 'vpid': "N/A", 'sid': "N/A", 'onid': "N/A", 'tsid': "N/A", 'prcpid': "N/A", 'caids': "FTA", 'pmtpid': "N/A", 'txtpid': "N/A", 'xres': "", 'yres': "", 'atype': "", 'vtype': "", 'avtype': "", 'fps': "", 'tbps': "", 'ttype': "",}
         streaminfo = ""
         array_caids = []
         service = self.source.service
@@ -216,7 +216,7 @@ class speedy_ServiceInfoEX(Poll, Converter, object):
         audio = service.audioTracks()
         if audio:
             if audio.getCurrentTrack() > -1:
-                self.stream['atype'] = str(audio.getTrackInfo(audio.getCurrentTrack()).getDescription()).replace(",","")
+                self.stream['atype'] = str(audio.getTrackInfo(audio.getCurrentTrack()).getDescription()).replace(",", "")
         self.stream['vtype'] = ("MPEG2", "H.264", "MPEG1", "MPEG4-II", "VC1", "VC1-SM", "HEVC", "")[info.getInfo(iServiceInformation.sVideoType)]
 
         # print "[iFlatServiceInfoEX, video type : ", info.getInfo(iServiceInformation.sVideoType), self.stream['vtype']

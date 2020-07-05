@@ -20,6 +20,7 @@
 ####################################################################################################
 ####################################################################################################
 
+from __future__ import print_function
 from Components.Converter.Converter import Converter
 from Components.Element import cached
 from Components.Converter.Poll import Poll
@@ -94,18 +95,18 @@ Biowetterregionen = {
         }
 
 Pollenflugregionen = {
-        'shh' : [('11','Inseln und Marschen'),('12','Geest,Schleswig-Holstein und Hamburg')],
-        'mvp' : [('20','Mecklenburg-Vorpommern')],
-        'nib' : [('31','Westl. Niedersachsen/Bremen'),('32','Östl. Niedersachsen')],
-        'nrw' : [('41','Rhein.-Westfäl. Tiefland'),('42','Ostwestfalen'),('43','Mittelgebirge NRW')],
-        'bbb' : [('50','Brandenburg und Berlin')],
-        'saa' : [('61','Tiefland Sachsen-Anhalt'),('62','Harz')],
-        'thu' : [('71','Tiefland Thüringen'),('72','Mittelgebirge Thüringen')],
-        'sac' : [('81','Tiefland Sachsen'),('82','Mittelgebirge Sachsen')],
-        'hes' : [('91','Nordhessen und hess. Mittelgebirge'),('92','Rhein-Main')],
-        'rps' : [('101','Rhein, Pfalz, Nahe und Mosel'),('102','Mittelgebirgsbereich Rheinland-Pfalz'),('103','Saarland')],
-        'baw' : [('111','Oberrhein und unteres Neckartal'),('112','Hohenlohe/mittlerer Neckar/Oberschwaben'),('113','Mittelgebirge Baden-Württemberg')],
-        'bay' : [('121','Allgäu/Oberbayern/Bay. Wald'),('122','Donauniederungen'),('123','Bayern nördl. der Donau, o. Bayr. Wald, o. Mainfranken'),('124','Mainfranken')]
+        'shh' : [('11', 'Inseln und Marschen'), ('12', 'Geest,Schleswig-Holstein und Hamburg')],
+        'mvp' : [('20', 'Mecklenburg-Vorpommern')],
+        'nib' : [('31', 'Westl. Niedersachsen/Bremen'), ('32', 'Östl. Niedersachsen')],
+        'nrw' : [('41', 'Rhein.-Westfäl. Tiefland'), ('42', 'Ostwestfalen'), ('43', 'Mittelgebirge NRW')],
+        'bbb' : [('50', 'Brandenburg und Berlin')],
+        'saa' : [('61', 'Tiefland Sachsen-Anhalt'), ('62', 'Harz')],
+        'thu' : [('71', 'Tiefland Thüringen'), ('72', 'Mittelgebirge Thüringen')],
+        'sac' : [('81', 'Tiefland Sachsen'), ('82', 'Mittelgebirge Sachsen')],
+        'hes' : [('91', 'Nordhessen und hess. Mittelgebirge'), ('92', 'Rhein-Main')],
+        'rps' : [('101', 'Rhein, Pfalz, Nahe und Mosel'), ('102', 'Mittelgebirgsbereich Rheinland-Pfalz'), ('103', 'Saarland')],
+        'baw' : [('111', 'Oberrhein und unteres Neckartal'), ('112', 'Hohenlohe/mittlerer Neckar/Oberschwaben'), ('113', 'Mittelgebirge Baden-Württemberg')],
+        'bay' : [('121', 'Allgäu/Oberbayern/Bay. Wald'), ('122', 'Donauniederungen'), ('123', 'Bayern nördl. der Donau, o. Bayr. Wald, o. Mainfranken'), ('124', 'Mainfranken')]
         }
 
 Pollengruppen = {
@@ -130,14 +131,14 @@ Pollenimgidx = {
         "3" : "7"
         }
 
-Pollenimgs = ['pollen_0_heute.png','pollen_0_morgen.png','pollen_1_heute.png','pollen_1_morgen.png','pollen_2_heute.png','pollen_2_morgen.png','pollen_3_heute.png','pollen_3_morgen.png','pollen_4_heute.png','pollen_4_morgen.png','pollen_5_heute.png','pollen_5_morgen.png','pollen_6_heute.png','pollen_6_morgen.png','pollen_7_heute.png','pollen_7_morgen.png']
-Bioimgs = ['bio_allg_heute.png','bio_allg_morgen.png','bio_asthma_heute.png','bio_asthma_morgen.png','bio_kreislauf_heute.png','bio_kreislauf_morgen.png','bio_rheuma_heute.png','bio_rheuma_morgen.png']
-Wetterimgs = ['aktuell.jpg','heutenacht.jpg','morgenfrueh.jpg','morgenspaet.jpg','uebermorgenfrueh.jpg','uebermorgenspaet.jpg','tag4frueh.jpg','tag4spaet.jpg','trend.jpg','dwd_radar.jpg']
+Pollenimgs = ['pollen_0_heute.png', 'pollen_0_morgen.png', 'pollen_1_heute.png', 'pollen_1_morgen.png', 'pollen_2_heute.png', 'pollen_2_morgen.png', 'pollen_3_heute.png', 'pollen_3_morgen.png', 'pollen_4_heute.png', 'pollen_4_morgen.png', 'pollen_5_heute.png', 'pollen_5_morgen.png', 'pollen_6_heute.png', 'pollen_6_morgen.png', 'pollen_7_heute.png', 'pollen_7_morgen.png']
+Bioimgs = ['bio_allg_heute.png', 'bio_allg_morgen.png', 'bio_asthma_heute.png', 'bio_asthma_morgen.png', 'bio_kreislauf_heute.png', 'bio_kreislauf_morgen.png', 'bio_rheuma_heute.png', 'bio_rheuma_morgen.png']
+Wetterimgs = ['aktuell.jpg', 'heutenacht.jpg', 'morgenfrueh.jpg', 'morgenspaet.jpg', 'uebermorgenfrueh.jpg', 'uebermorgenspaet.jpg', 'tag4frueh.jpg', 'tag4spaet.jpg', 'trend.jpg', 'dwd_radar.jpg']
 def write_log(svalue):
     if log:
         t = localtime()
         logtime = '%02d:%02d:%02d' % (t.tm_hour, t.tm_min, t.tm_sec)
-        VWeather3_log = open('/tmp/VWeather3.log',"a")
+        VWeather3_log = open('/tmp/VWeather3.log', "a")
         VWeather3_log.write(str(logtime) + " - " + str(svalue) + "\n")
         VWeather3_log.close()
 
@@ -180,11 +181,11 @@ else:
             ("sl", _("Slovenian")),
             ("tr", _("Turkish"))
     ])# Ländercode nach ISO-3166 Alpha-2
-    config.plugins.VWeather3.Units = ConfigSelection(default = "metric", choices = [("metric", _("Celsius")),("imperial", _("Fahrenheit")),("", _("Kelvin"))])      # metric = °Celsius ; imperial = Fahrenheit ; default = Kelvin
+    config.plugins.VWeather3.Units = ConfigSelection(default = "metric", choices = [("metric", _("Celsius")), ("imperial", _("Fahrenheit")), ("", _("Kelvin"))])      # metric = °Celsius ; imperial = Fahrenheit ; default = Kelvin
     config.plugins.VWeather3.numbers = ConfigInteger(default = 1, limits = (0, 2))
     config.plugins.VWeather3.spaces = ConfigYesNo(default = True)
-    config.plugins.VWeather3.DateFormat = ConfigSelection(default = "lang", choices = [("lang", _("long")),("kurz", _("short"))])
-    config.plugins.VWeather3.DayFormat = ConfigSelection(default = "lang", choices = [("lang", _("long")),("kurz", _("short"))])
+    config.plugins.VWeather3.DateFormat = ConfigSelection(default = "lang", choices = [("lang", _("long")), ("kurz", _("short"))])
+    config.plugins.VWeather3.DayFormat = ConfigSelection(default = "lang", choices = [("lang", _("long")), ("kurz", _("short"))])
 
     config.plugins.VWeather3.Darksky_apikey = ConfigText(default = "1234567890")
     config.plugins.VWeather3.Darksky_lat = ConfigText(default = "0.0")
@@ -202,7 +203,7 @@ else:
     config.plugins.VWeather3.Darksky_alerts = ConfigYesNo(default = False)
 
     config.plugins.VWeather3.OpenWeatherMap_apikey = ConfigText(default = "1234567890")
-    config.plugins.VWeather3.OpenWeatherMap_geolocation = ConfigSelection(default = "Ort", choices = [("PLZ", _("ZIP code")),("Ort", _("City name"))])
+    config.plugins.VWeather3.OpenWeatherMap_geolocation = ConfigSelection(default = "Ort", choices = [("PLZ", _("ZIP code")), ("Ort", _("City name"))])
     config.plugins.VWeather3.OpenWeatherMap_zipcode = ConfigText(default = "01234")
     config.plugins.VWeather3.OpenWeatherMap_zipcode1 = ConfigText(default = "01234")
     config.plugins.VWeather3.OpenWeatherMap_zipcode2 = ConfigText(default = "01234")
@@ -246,14 +247,14 @@ else:
     config.plugins.VWeather3.UWW_AT_BL = ConfigSelection(default = "Burgenland", choices = [
             "Burgenland", "Kärnten", "Niederöstereich", "Oberöstereich", "Osttirol", "Salzburg", "Steiermark", "Tirol", "Voralberg", "Wien" ])
 
-    config.plugins.VWeather3.NetworkMode = ConfigSelection(default = "Single", choices = [("Single", _("Single")),("Server", _("Server")),("Client", _("Client"))])
+    config.plugins.VWeather3.NetworkMode = ConfigSelection(default = "Single", choices = [("Single", _("Single")), ("Server", _("Server")), ("Client", _("Client"))])
     config.plugins.VWeather3.ServerIP = ConfigIP(default = [192, 168, 0, 0])
     config.plugins.VWeather3.ImageFolder = ConfigSelection(default = "/usr/share/enigma2/VWeather3/", choices = [ "/usr/share/enigma2/VWeather3/", "/media/hdd/VWeather3/", "/media/usb/VWeather3/" ])
-    print "Bitte installiere das Plugin-Vweather3. Wetterdienste sind derzeit nicht Verfügbar!"
+    print("Bitte installiere das Plugin-Vweather3. Wetterdienste sind derzeit nicht Verfügbar!")
 
 weather_data = None
-wdays_en = [_("Sunday"),_("Monday"),_("Tuesday"),_("Wednesday"),_("Thursday"),_("Friday"),_("Saturday")]
-swdays_en = [_("Sun"),_("Mon"),_("Tue"),_("Wed"),_("Thu"),_("Fri"),_("Sat")]
+wdays_en = [_("Sunday"), _("Monday"), _("Tuesday"), _("Wednesday"), _("Thursday"), _("Friday"), _("Saturday")]
+swdays_en = [_("Sun"), _("Mon"), _("Tue"), _("Wed"), _("Thu"), _("Fri"), _("Sat")]
 
 log = config.plugins.VWeather3.Log.value
 numbers = '.' + str(config.plugins.VWeather3.numbers.value) + 'f'
@@ -365,7 +366,7 @@ class speedyVWeather5(Poll, Converter, object):
                 self.lastupdate = mktime(localtime())
                 WeatherInfo = weather_data.WeatherInfo["currentLocation"]
                 if str(WeatherInfo) != str(self.lastplace):
-                    Converter.changed(self,(self.CHANGED_POLL,))
+                    Converter.changed(self, (self.CHANGED_POLL,))
                 self.lastplace = WeatherInfo
 
     def connectDownstream(self, downstream):
@@ -581,12 +582,12 @@ class WeatherData:
         try:
             f = os.popen('ifconfig eth0 | grep "inet\ addr" | cut -d: -f2 | cut -d" " -f1')
             my_ip=f.read()
-            HOST = str(my_ip).replace("\n","")
+            HOST = str(my_ip).replace("\n", "")
             write_log('my IP is ' + str(HOST))
             s = socket(AF_INET, SOCK_STREAM)
             s.bind((HOST, PORT))
             write_log("Wetter-Server gestartet auf " + str(HOST) + ' mit Port ' + str(PORT))
-            while 1:
+            while True:
                 s.listen(10)
                 conn, addr = s.accept()
                 data = conn.recv(BUFSIZE)
@@ -600,20 +601,20 @@ class WeatherData:
                     conn.sendall(str(weather_data.WeatherInfo["currentLocation"])+str(weather_data.WeatherInfo["DWD_ALERT_END"]))
                 elif data == "getconfig":
                     if config.plugins.VWeather3.Provider.value == "Yahoo":
-                        cnf = ['Yahoo',config.plugins.VWeather3.Yahoo_woeid.value,config.plugins.VWeather3.Yahoo_woeid1.value,config.plugins.VWeather3.Yahoo_woeid2.value,config.plugins.VWeather3.Yahoo_woeid3.value]
+                        cnf = ['Yahoo', config.plugins.VWeather3.Yahoo_woeid.value, config.plugins.VWeather3.Yahoo_woeid1.value, config.plugins.VWeather3.Yahoo_woeid2.value, config.plugins.VWeather3.Yahoo_woeid3.value]
                     elif config.plugins.VWeather3.Provider.value == "OpenWeatherMap":
                         if config.plugins.VWeather3.OpenWeatherMap_geolocation.value == "PLZ":
-                            cnf = ['OpenWeatherMap','PLZ',config.plugins.VWeather3.OpenWeatherMap_zipcode.value,config.plugins.VWeather3.OpenWeatherMap_zipcode1.value,config.plugins.VWeather3.OpenWeatherMap_zipcode2.value,config.plugins.VWeather3.OpenWeatherMap_zipcode3.value]
+                            cnf = ['OpenWeatherMap', 'PLZ', config.plugins.VWeather3.OpenWeatherMap_zipcode.value, config.plugins.VWeather3.OpenWeatherMap_zipcode1.value, config.plugins.VWeather3.OpenWeatherMap_zipcode2.value, config.plugins.VWeather3.OpenWeatherMap_zipcode3.value]
                         else:
-                            cnf = ['OpenWeatherMap','Place',config.plugins.VWeather3.OpenWeatherMap_place.value,config.plugins.VWeather3.OpenWeatherMap_place1.value,config.plugins.VWeather3.OpenWeatherMap_place2.value,config.plugins.VWeather3.OpenWeatherMap_place3.value]
+                            cnf = ['OpenWeatherMap', 'Place', config.plugins.VWeather3.OpenWeatherMap_place.value, config.plugins.VWeather3.OpenWeatherMap_place1.value, config.plugins.VWeather3.OpenWeatherMap_place2.value, config.plugins.VWeather3.OpenWeatherMap_place3.value]
                     elif config.plugins.VWeather3.Provider.value == "Darksky":
-                        cnf = ['Darksky',(config.plugins.VWeather3.Darksky_lat.value,config.plugins.VWeather3.Darksky_lon.value),(config.plugins.VWeather3.Darksky_lat1.value,config.plugins.VWeather3.Darksky_lon1.value),(config.plugins.VWeather3.Darksky_lat2.value,config.plugins.VWeather3.Darksky_lon2.value),(config.plugins.VWeather3.Darksky_lat3.value,config.plugins.VWeather3.Darksky_lon3.value)]
+                        cnf = ['Darksky', (config.plugins.VWeather3.Darksky_lat.value, config.plugins.VWeather3.Darksky_lon.value), (config.plugins.VWeather3.Darksky_lat1.value, config.plugins.VWeather3.Darksky_lon1.value), (config.plugins.VWeather3.Darksky_lat2.value, config.plugins.VWeather3.Darksky_lon2.value), (config.plugins.VWeather3.Darksky_lat3.value, config.plugins.VWeather3.Darksky_lon3.value)]
                     conn.sendall(str(cnf))
                 elif data == "getWeather":
                     fh, abs_path = mkstemp()
-                    with fdopen(fh,'w') as f:
+                    with fdopen(fh, 'w') as f:
                         f.write(json.dumps(weather_data.WeatherInfo))
-                    with open(abs_path,'r') as f:
+                    with open(abs_path, 'r') as f:
                         while True:
                             l = f.read(BUFSIZE)
                             write_log(str(l.encode('utf8')))
@@ -630,7 +631,7 @@ class WeatherData:
 #                                       conn.sendall(str(weather_data.WeatherInfo))
                 elif data == "getRadar":
                     filename = os.path.join(picturepath, 'dwd_radar.jpg')
-                    f = open(filename,'rb')
+                    f = open(filename, 'rb')
                     while True:
                         l = f.read(BUFSIZE)
                         while (l):
@@ -643,7 +644,7 @@ class WeatherData:
                             break
                 elif data == "getWarning":
                     filename = os.path.join(picturepath, 'dwd_alert.png')
-                    f = open(filename,'rb')
+                    f = open(filename, 'rb')
                     while True:
                         l = f.read(BUFSIZE)
                         while (l):
@@ -671,7 +672,7 @@ class WeatherData:
                             yunits = "u=f"
 #                                               url, oauth = make_request(str(data).replace('getfav=',''),yunits)
 #                                               r = requests.get(url=url, headers={'Authorization' : oauth}, timeout=20)
-                        geolocation = "woeid=" + str(data).replace('getfav=','')
+                        geolocation = "woeid=" + str(data).replace('getfav=', '')
                         query_url = 'https://weather-ydn-yql.media.yahoo.com/forecastrss?' + geolocation + '&format=json&' + yunits
                         queryoauth = get_queryoauth()
                         write_log("Yahoo URL : " + str(query_url))
@@ -684,15 +685,15 @@ class WeatherData:
                         apikey = config.plugins.VWeather3.OpenWeatherMap_apikey.value
                         zipcode = config.plugins.VWeather3.OpenWeatherMap_zipcode.value
                         if config.plugins.VWeather3.OpenWeatherMap_geolocation.value == "PLZ":
-                            geolocation = "zip=" + str(data).replace('getfav=','')
+                            geolocation = "zip=" + str(data).replace('getfav=', '')
                         else:
-                            geolocation = "q=" + str(data).replace('getfav=','')
+                            geolocation = "q=" + str(data).replace('getfav=', '')
                         url = "http://api.openweathermap.org/data/2.5/forecast?" + geolocation + "&APPID=" + apikey + "&units=" + units + "&lang=" + countrycode
                         write_log("OWM-URL : " + str(url))
-                        getPage(url,method = "GET", timeout=20).addCallback(self.GotOpenWeatherMapWeatherData).addErrback(self.downloadError)
+                        getPage(url, method = "GET", timeout=20).addCallback(self.GotOpenWeatherMapWeatherData).addErrback(self.downloadError)
                         url = "http://api.openweathermap.org/data/2.5/weather?" + geolocation + "&APPID=" + apikey + "&units=" + units + "&lang=" + countrycode
                         write_log("COWMURL : " + str(url))
-                        getPage(url,method = "GET", timeout=20).addCallback(self.GotCurrentOpenWeatherMapWeatherData).addErrback(self.downloadError)
+                        getPage(url, method = "GET", timeout=20).addCallback(self.GotCurrentOpenWeatherMapWeatherData).addErrback(self.downloadError)
                     elif config.plugins.VWeather3.Provider.value == "Darksky":
                         if units == "metric":
                             dsunits = "si"
@@ -701,7 +702,7 @@ class WeatherData:
                         else:
                             dsunits = "auto"
                         apikey = config.plugins.VWeather3.Darksky_apikey.value
-                        latlon = str(data).replace('getfav=','').split(',')
+                        latlon = str(data).replace('getfav=', '').split(',')
                         lat = latlon[0]
                         lon = latlon[1]
                         global dsplace
@@ -711,7 +712,7 @@ class WeatherData:
                         getPage(url, timeout=20).addCallback(self.GotDarkskyWeatherData).addErrback(self.downloadError)
                 else:
                     filename = os.path.join(picturepath, str(data))
-                    f = open(filename,'rb')
+                    f = open(filename, 'rb')
                     while True:
                         l = f.read(BUFSIZE)
                         while (l):
@@ -770,7 +771,7 @@ class WeatherData:
                         estop += 1
                         if 'done' in str(data) or estop > 10:
                             break
-                    wdict2js = str(wdict).replace('done','').replace('\u00b0','°').replace('\\u00e4','ä').replace('\u00c4','Ä').replace('\u00f6','ö').replace('\u00d6','Ö').replace('\u00fc','ü').replace('\u00dc','Ü').decode('utf8')
+                    wdict2js = str(wdict).replace('done', '').replace('\u00b0', '°').replace('\\u00e4', 'ä').replace('\u00c4', 'Ä').replace('\u00f6', 'ö').replace('\u00d6', 'Ö').replace('\u00fc', 'ü').replace('\u00dc', 'Ü').decode('utf8')
                     self.WeatherInfo = eval(wdict2js)
                     write_log(str(self.WeatherInfo))
                     s.close()
@@ -802,7 +803,7 @@ class WeatherData:
                 data = s.recv(BUFSIZE)
                 write_log("Empfange Radarbild")
                 while str(data) != 'done':
-                    datatowrite = (data).replace('done','')
+                    datatowrite = (data).replace('done', '')
                     rcvb += len(datatowrite)
                     f.write(datatowrite)
                     data = s.recv(BUFSIZE)
@@ -830,7 +831,7 @@ class WeatherData:
                 data = s.recv(BUFSIZE)
                 write_log("Empfange Warnbild")
                 while str(data) != 'done':
-                    datatowrite = (data).replace('done','')
+                    datatowrite = (data).replace('done', '')
                     rcvb += len(datatowrite)
                     f.write(datatowrite)
                     data = s.recv(BUFSIZE)
@@ -862,7 +863,7 @@ class WeatherData:
                             data = s.recv(BUFSIZE)
                             write_log("Empfange " + str(img))
                             while str(data) != 'done':
-                                datatowrite = (data).replace('done','')
+                                datatowrite = (data).replace('done', '')
                                 rcvb += len(datatowrite)
                                 f.write(datatowrite)
                                 data = s.recv(BUFSIZE)
@@ -887,7 +888,7 @@ class WeatherData:
                             data = s.recv(BUFSIZE)
                             write_log("Empfange " + str(img))
                             while str(data) != 'done':
-                                datatowrite = (data).replace('done','')
+                                datatowrite = (data).replace('done', '')
                                 rcvb += len(datatowrite)
                                 f.write(datatowrite)
                                 data = s.recv(BUFSIZE)
@@ -912,7 +913,7 @@ class WeatherData:
                             data = s.recv(BUFSIZE)
                             write_log("Empfange " + str(img))
                             while str(data) != 'done':
-                                datatowrite = (data).replace('done','')
+                                datatowrite = (data).replace('done', '')
                                 rcvb += len(datatowrite)
                                 f.write(datatowrite)
                                 data = s.recv(BUFSIZE)
@@ -973,10 +974,10 @@ class WeatherData:
         #                                       geolocation = "q=" + config.plugins.VWeather3.OpenWeatherMap_place.value + "," + countrycode
                         url = "http://api.openweathermap.org/data/2.5/forecast?" + geolocation + "&APPID=" + apikey + "&units=" + units + "&lang=" + countrycode
                         write_log("OWM-URL : " + str(url))
-                        getPage(url,method = "GET", timeout=20).addCallback(self.GotOpenWeatherMapWeatherData).addErrback(self.downloadError)
+                        getPage(url, method = "GET", timeout=20).addCallback(self.GotOpenWeatherMapWeatherData).addErrback(self.downloadError)
                         url = "http://api.openweathermap.org/data/2.5/weather?" + geolocation + "&APPID=" + apikey + "&units=" + units + "&lang=" + countrycode
                         write_log("COWMURL : " + str(url))
-                        getPage(url,method = "GET", timeout=20).addCallback(self.GotCurrentOpenWeatherMapWeatherData).addErrback(self.downloadError)
+                        getPage(url, method = "GET", timeout=20).addCallback(self.GotCurrentOpenWeatherMapWeatherData).addErrback(self.downloadError)
                     elif config.plugins.VWeather3.Provider.value == "Yahoo":
                         if units == "metric":
                             yunits = "u=c"
@@ -1011,7 +1012,7 @@ class WeatherData:
                         if isDWD_Wetter:
                             url = 'https://www.dwd.de/DWD/wetter/wv_allg/deutschland/text/vhdl13_' + Wetterregionen[config.plugins.VWeather3.DWD_BL.value]  + '.html'
                             write_log("DWD Vorhersage URL : " + str(url))
-                            getPage(url,method = "GET", timeout=20).addCallback(self.GotDWDForecastData).addErrback(self.downloadError)
+                            getPage(url, method = "GET", timeout=20).addCallback(self.GotDWDForecastData).addErrback(self.downloadError)
 
     #                                               url = 'https://www.dwd.de/DE/wetter/vorhersage_aktuell/10-tage/10tage_node.html'
     #                                               write_log("DWD 10 Tage URL : " + str(url))
@@ -1022,13 +1023,13 @@ class WeatherData:
                             if (t.tm_hour > 10 and t.tm_hour < 13) or (t.tm_hour > 0 and t.tm_hour < 2) or self.WeatherInfo["DWD_POLLEN_DATETIME"] == " ":
                                 url = "https://opendata.dwd.de/climate_environment/health/alerts/s31fg.json"
                                 write_log("DWD-Pollen-URL : " + str(url))
-                                getPage(url,method = "GET", timeout=20).addCallback(self.GotDWDPollenData).addErrback(self.downloadError)
+                                getPage(url, method = "GET", timeout=20).addCallback(self.GotDWDPollenData).addErrback(self.downloadError)
 
                         if isDWD_Bio:
                             if (t.tm_hour > 10 and t.tm_hour < 13) or (t.tm_hour > 0 and t.tm_hour < 2) or not self.WeatherInfo["DWD_BIO_LIST"]:
                                 url = "https://opendata.dwd.de/climate_environment/health/alerts/biowetter.json"
                                 write_log("DWD-Biowetter-URL : " + str(url))
-                                getPage(url,method = "GET", timeout=20).addCallback(self.GotDWDBioData).addErrback(self.downloadError)
+                                getPage(url, method = "GET", timeout=20).addCallback(self.GotDWDBioData).addErrback(self.downloadError)
                 else:
                     write_log("kein Internet!")
             except Exception as ex:
@@ -1050,7 +1051,7 @@ class WeatherData:
                     elif isUWW_AT:
                         url = 'http://meteoalarm.eu/documents/rss/at.rss'
                         write_log("Meteoalarm AT : " + str(url))
-                        getPage(url,method = "GET", timeout=20).addCallback(self.GotMeteoalarmAT).addErrback(self.downloadError)
+                        getPage(url, method = "GET", timeout=20).addCallback(self.GotMeteoalarmAT).addErrback(self.downloadError)
                 else:
                     write_log("kein Internet!")
             except Exception as ex:
@@ -1281,7 +1282,7 @@ class WeatherData:
                 self.WeatherInfo["forecastTodayText"] = self.convertWeatherText(parsed_json['daily']['data'][0]['icon'])
                 self.WeatherInfo["forecastTodayPicon"] = self.convertIconName(parsed_json['daily']['data'][0]['icon'])
 
-                days =["0","1","2","3","4","5","6"]
+                days =["0", "1", "2", "3", "4", "5", "6"]
                 for day in days:
                     aday = int(day)+1
                     if day == "0":
@@ -1352,7 +1353,7 @@ class WeatherData:
                 self.WeatherInfo["forecastTodayText"] = self.ConvertInfo(parsed_json['forecasts'][0]['text'])
                 self.WeatherInfo["forecastTodayPicon"] = str(parsed_json['forecasts'][0]['code'])
 
-                days =["0","1","2","3","4","5","6","7","8"]
+                days =["0", "1", "2", "3", "4", "5", "6", "7", "8"]
                 for day in days:
                     aday = int(day)+1
                     if day == "0":
@@ -1374,7 +1375,7 @@ class WeatherData:
     def GotDWDWeatherData(self, data = None):
         if data is not None:
             try:
-                parsed_json = json.loads(str(data).replace("warnWetter.loadWarnings(","").replace(");",""))
+                parsed_json = json.loads(str(data).replace("warnWetter.loadWarnings(", "").replace(");", ""))
                 cellID = str(config.plugins.VWeather3.DWD_WeatherCellID.value)
                 self.WeatherInfo["DWD_DATETIME"] = self.convertDateTime(int(parsed_json['time']/1000 - 7200))
                 if 'warnings' in parsed_json:
@@ -1464,7 +1465,7 @@ class WeatherData:
                 self.WeatherInfo["DWD_POLLEN_DATETIME"] = str(Pollen['last_update'])
                 while i < len(Pollen['content']):
                     if int(Pollen['content'][i]['partregion_id']) == pregion or (int(Pollen['content'][i]['region_id']) == pregion and int(Pollen['content'][i]['partregion_id']) == -1):
-                        if pregion in [20,50]:
+                        if pregion in [20, 50]:
                             self.WeatherInfo["DWD_POLLEN_REGION"] = str(Pollen['content'][i]['region_name'])
                         else:
                             self.WeatherInfo["DWD_POLLEN_REGION"] = str(Pollen['content'][i]['partregion_name'])
@@ -1562,11 +1563,11 @@ class WeatherData:
     def GotDWDForecastData(self, data=None):
         if data is not None:
             try:
-                soup = BeautifulSoup(data,'html.parser')
+                soup = BeautifulSoup(data, 'html.parser')
                 forecast = []
-                for idx in range(2,6):
+                for idx in range(2, 6):
                     res = soup.find_all('pre')[idx]
-                    r = str(res).replace('<pre style="font-family: sans-serif">','').replace('\r\n','').replace('\r','').replace('<br/>','').replace('</pre>','')
+                    r = str(res).replace('<pre style="font-family: sans-serif">', '').replace('\r\n', '').replace('\r', '').replace('<br/>', '').replace('</pre>', '')
                     forecast.append(r)
                 self.WeatherInfo["DWD_FORECAST_LIST"] = forecast
                 write_log('DWD Vorhersage : ' + str(self.WeatherInfo["DWD_FORECAST_LIST"]))
@@ -1620,7 +1621,7 @@ class WeatherData:
                 t = localtime()
                 self.WeatherInfo["DWD_DATETIME"] = '%02d.%02d.%04d - %02d:%02d:%02d' % (t.tm_mday, t.tm_mon, t.tm_year, t.tm_hour, t.tm_min, t.tm_sec)
                 contenttext = data
-                root = ET.fromstring(contenttext.replace('<content type="xhtml">',"<content:encoded><![CDATA[").replace("</content>","]]></content:encoded>").replace('<feed xmlns="http://www.w3.org/2005/Atom">',magic).replace("</feed>","</rss>"))
+                root = ET.fromstring(contenttext.replace('<content type="xhtml">', "<content:encoded><![CDATA[").replace("</content>", "]]></content:encoded>").replace('<feed xmlns="http://www.w3.org/2005/Atom">', magic).replace("</feed>", "</rss>"))
 
                 if str(config.plugins.VWeather3.UWW_AT_BL.value) == 'Niederöstereich':
                     slen = 6
@@ -1641,9 +1642,9 @@ class WeatherData:
                                 self.WeatherInfo["DWD_WARNLEVEL"] = "5"
                                 found = True
                         elif str(child.tag) == "description":
-                            dstemp = strip_html(child.text.encode('utf8')).replace('Today','Heute\n').replace('Tomorrow','\nMorgen\n').replace('deutsch', '').replace(' CET', '')
+                            dstemp = strip_html(child.text.encode('utf8')).replace('Today', 'Heute\n').replace('Tomorrow', '\nMorgen\n').replace('deutsch', '').replace(' CET', '')
                             dates = re.findall(r'\d{2}.\d{2}.\d{4} \d{2}:\d{2}', dstemp)
-                            for idx in range(0,4):
+                            for idx in range(0, 4):
                                 en = string.find(dstemp, 'english')
                                 if en > 0:
                                     de = string.find(dstemp, '.', en) + 1
@@ -1654,7 +1655,7 @@ class WeatherData:
                             if dates:
                                 self.WeatherInfo["DWD_ALERT_START"] = str(dates[0])
                                 self.WeatherInfo["DWD_ALERT_END"] = str(dates[1])
-                                self.WeatherInfo["DWD_ALERT_TEXT"] = (dstemp).replace('From: ','vom ').replace(' Until: ',' bis ').replace(': ', '\n')
+                                self.WeatherInfo["DWD_ALERT_TEXT"] = (dstemp).replace('From: ', 'vom ').replace(' Until: ', ' bis ').replace(': ', '\n')
                         elif str(child.tag) == 'pubDate':
                             tstamp = mktime(datetime.datetime.strptime(child.text.encode('utf8'), '%a, %d %b %Y %H:%M:%S +0200').timetuple()) + 3600
                             self.WeatherInfo["DWD_DATETIME"] = str(datetime.datetime.fromtimestamp(tstamp).strftime("%d.%m.%Y %H:%M"))
@@ -1718,9 +1719,9 @@ class WeatherData:
     def GotDWD10DaysData(self, data=None):
         if data is not None:
             try:
-                soup = BeautifulSoup(data,'html.parser')
+                soup = BeautifulSoup(data, 'html.parser')
                 res = soup.find("div", {"id": "wettertext"})
-                self.WeatherInfo["DWD_FORECAST_10DAYS"] = str(res).replace('<div id="wettertext">','').replace('<br/>\n<br/>','\n').replace('<br/><br/>','\n').replace('<br/>','\n').replace('\r\n','').replace('\r','').replace('<h3>','').replace('</h3>','').replace('</pre>','').replace('<pre style="font-family: sans-serif">','').replace('<strong>','').replace('</strong>','').replace('</div>','')
+                self.WeatherInfo["DWD_FORECAST_10DAYS"] = str(res).replace('<div id="wettertext">', '').replace('<br/>\n<br/>', '\n').replace('<br/><br/>', '\n').replace('<br/>', '\n').replace('\r\n', '').replace('\r', '').replace('<h3>', '').replace('</h3>', '').replace('</pre>', '').replace('<pre style="font-family: sans-serif">', '').replace('<strong>', '').replace('</strong>', '').replace('</div>', '')
                 write_log('DWD Vorhersage : ' + str(self.WeatherInfo["DWD_FORECAST_10DAYS"]))
             except Exception as ex:
                 write_log("GotDWD10DaysData : " + str(ex))
@@ -1868,13 +1869,13 @@ class WeatherData:
         ptext = 'Vollmond'
         # constants
         syn_moon_month = 29.530589                                                                      # synodal length of moon cycle
-        hist_fullmoon = 2018,9,25,6,1,36,0,0,1                                          # base full-moon as struct time
+        hist_fullmoon = 2018, 9, 25, 6, 1, 36, 0, 0, 1                                          # base full-moon as struct time
         moon_time = mktime(hist_fullmoon)                                                       # base full-moon - seconds since epoch
         hist_fullmoon_days = moon_time/86400                                            # base full-moon - days since epoch
         now_days = mktime(localtime())/86400                                            # days since eval
         days_since_hist_fullmoon = now_days - hist_fullmoon_days    # difference in days between base fullmoon and now
         full_moons_since = days_since_hist_fullmoon/syn_moon_month  # Number of full-moons that have passed since base full-moon
-        phase = round(full_moons_since,2)                                                       # rounded to 2 digits
+        phase = round(full_moons_since, 2)                                                       # rounded to 2 digits
         phase = (phase-int(phase))                                                                      # trailing rest = % moon-phase
 
         # calculate moon phase
@@ -1910,7 +1911,7 @@ class WeatherData:
             illA = hmoonA - hEllA                   # illuminated area = Half moon area minus half Ellipse Area
 
         illumperc =  illA / pi * 100                    # illuminated area relative to full moon area (based on unit circle r=1)
-        illumperc = round(illumperc,1)
+        illumperc = round(illumperc, 1)
 
         if phase > 0 and illumperc > 95:
             picon="095"
@@ -2006,7 +2007,7 @@ class WeatherData:
                         self.Path = '/usr/share/enigma2/' + sourcepath
                     else:
                         self.Path = '/usr/share/enigma2/' + sourcepath + '/'
-                path = str(self.Path).replace('//','/')
+                path = str(self.Path).replace('//', '/')
                 if os.path.isdir(path):
                     iconlist = glob.glob(path + '*.png')
                     for filename in iconlist:
@@ -2518,21 +2519,21 @@ class WeatherData:
 
     # ... called for DarkSky weather description, actually the icon name ist used here
     def convertWeatherText(self, WeatherText):
-        return str(_(WeatherText.replace('-',' ')))
+        return str(_(WeatherText.replace('-', ' ')))
 
     def convertAstroSun(self, val):
         value = datetime.datetime.fromtimestamp(int(val))
         return value.strftime('%H:%M')
 
     def convertCurrentDate(self, val):
-        value = datetime.datetime.fromtimestamp(int((datetime.datetime.fromtimestamp(int(val)) - datetime.datetime(1970,1,1)).total_seconds()))
+        value = datetime.datetime.fromtimestamp(int((datetime.datetime.fromtimestamp(int(val)) - datetime.datetime(1970, 1, 1)).total_seconds()))
         if config.plugins.VWeather3.DateFormat.value == "kurz":
             return value.strftime('%d.%m.')
         else:
             return value.strftime('%d.%m.%Y')
 
     def convertCurrentDateLong(self, val):
-        value = datetime.datetime.fromtimestamp(int((datetime.datetime.fromtimestamp(int(val)) - datetime.datetime(1970,1,1)).total_seconds()))
+        value = datetime.datetime.fromtimestamp(int((datetime.datetime.fromtimestamp(int(val)) - datetime.datetime(1970, 1, 1)).total_seconds()))
         return value.strftime('%d.%m.%Y')
 
     def convertCurrentTime(self, val):
@@ -2540,7 +2541,7 @@ class WeatherData:
         return value.strftime('%H:%M:%S')
 
     def convertCurrentDay(self, val):
-        svalue = datetime.datetime.fromtimestamp(int((datetime.datetime.fromtimestamp(int(val)) - datetime.datetime(1970,1,1)).total_seconds()))
+        svalue = datetime.datetime.fromtimestamp(int((datetime.datetime.fromtimestamp(int(val)) - datetime.datetime(1970, 1, 1)).total_seconds()))
         value = int(svalue.strftime("%w"))
         if config.plugins.VWeather3.DayFormat.value == "kurz":
             return swdays_en[value]
@@ -2548,7 +2549,7 @@ class WeatherData:
             return wdays_en[value]
 
     def convertDateTime(self, val):
-        value = datetime.datetime.fromtimestamp(int((datetime.datetime.fromtimestamp(int(val)) - datetime.datetime(1970,1,1)).total_seconds()))
+        value = datetime.datetime.fromtimestamp(int((datetime.datetime.fromtimestamp(int(val)) - datetime.datetime(1970, 1, 1)).total_seconds()))
         return value.strftime('%d.%m.%Y %H:%M')
 
     def ConvertTemp(self, unit):

@@ -39,10 +39,10 @@ class speedyinfoMovie(Converter, object):
                     try:
                         p = '((.*?))[;=:-].*?(.*?)'
                         e1 = re.search(p, evnt)
-                        ffilm = re.sub('\W+','+', e1.group(1))
+                        ffilm = re.sub('\W+', '+', e1.group(1))
                     except:
                         w = re.sub("([\(\[]).*?([\)\]])", " ", evnt)
-                        ffilm = re.sub('\W+','+', w)
+                        ffilm = re.sub('\W+', '+', w)
                     url = 'https://www.omdbapi.com/?apikey=%s&t=%s' %(api, ffilm.lower())
                     data = json.load(urlopen(url))
 
@@ -55,7 +55,7 @@ class speedyinfoMovie(Converter, object):
                     award = data['Awards']
 
                     if title:
-                        open("/tmp/rating","w").write("{}\n{}".format(rtng, rate))
+                        open("/tmp/rating", "w").write("{}\n{}".format(rtng, rate))
                         return "\nTitle : {} \nImdb : {} \nYear : {}, {} \nRate : {} \nGenre : {} \nAwards : {}".format(title, rtng, str(country), str(year.encode('utf-8')), rate, genre, award)
                     else:
                         if os.path.exists("/tmp/rating"):
@@ -122,10 +122,10 @@ class speedyinfoMovie(Converter, object):
                         try:
                             p = '((.*?))[;=:-].*?(.*?)'
                             e1 = re.search(p, evnt)
-                            ffilm = re.sub('\W+','+', e1.group(1))
+                            ffilm = re.sub('\W+', '+', e1.group(1))
                         except:
                             w = re.sub("([\(\[]).*?([\)\]])", " ", evnt)
-                            ffilm = re.sub('\W+','+', w)
+                            ffilm = re.sub('\W+', '+', w)
                         url = 'https://www.omdbapi.com/?apikey=%s&t=%s' %(api, ffilm.lower())
                         data = json.load(urlopen(url))
                         rating = data['imdbRating']

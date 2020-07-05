@@ -84,7 +84,7 @@ class speedy_poster(Renderer):
             self.evnt = event.getEventName()
             try:
                 p = '((.*?)).\(.*?(.*?)\)'
-                e1 = re.search(p,self.evnt)
+                e1 = re.search(p, self.evnt)
                 if e1:
                     jr = e1.group(1)
                     self.evntNm = jr
@@ -113,7 +113,7 @@ class speedy_poster(Renderer):
             os.makedirs(path_folder)
         dwn_poster = path_folder + "%s.jpg"%(self.evntNm)
         if not os.path.exists(dwn_poster):
-            with open(dwn_poster.lower(),'wb') as f:
+            with open(dwn_poster.lower(), 'wb') as f:
                 f.write(urllib2.urlopen(url_poster).read())
                 f.close()
         return
@@ -125,7 +125,7 @@ class speedy_poster(Renderer):
         for i in pattern:
             seg = re.search(i, fd)
             if seg:
-                if re.search("Episodio",i):
+                if re.search("Episodio", i):
                     return "S"+seg.group(2).zfill(2)+"E"+seg.group(1).zfill(2)
                 else :
                     return "S"+seg.group(1).zfill(2)+"E"+seg.group(2).zfill(2)

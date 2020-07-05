@@ -1,3 +1,4 @@
+from __future__ import print_function
 # Embedded file name: /usr/lib/enigma2/python/Components/Converter/VtiInfo.py
 from Components.config import config
 from Components.Converter.Converter import Converter
@@ -114,7 +115,7 @@ class speedyInfo(Poll, Converter, object):
                             if len(c) == 3:
                                 c = '0%s' % c
                             c = c[:2].upper()
-                            if self.systemCaids.has_key(c):
+                            if c in self.systemCaids:
                                 caidlist[c] = (self.systemCaids.get(c), 1)
 
                         ecm_info = self.ecmfile()
@@ -288,7 +289,7 @@ class speedyInfo(Poll, Converter, object):
                         item = line.split(':', 1)
                         if len(item) > 1:
                             info[item[0].strip().lower()] = item[1].strip()
-                        elif not info.has_key('caid'):
+                        elif 'caid' not in info:
                             x = line.lower().find('caid')
                             if x != -1:
                                 y = line.find(',')
@@ -362,7 +363,7 @@ class speedyInfo(Poll, Converter, object):
             pingtestresult = open(pingpath, 'rb').readlines()
             for line in pingtestresult:
                 x = line.lower().find('0')
-                print x
+                print(x)
                 if x == 0:
                     pingtestresult = 0
                 else:

@@ -150,7 +150,7 @@ class speedyPiconSatTVMini(Renderer):
                                  49: "48E",
                                  48: "48E",
                                  30: "30E"}[frontendData.get("orbital_position", "None")]
-                            except Exception, e:
+                            except Exception as e:
                                 pass
 
                 pos = sname.rfind(':')

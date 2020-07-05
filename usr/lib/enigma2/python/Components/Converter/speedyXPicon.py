@@ -8,7 +8,7 @@ from enigma import iServiceInformation, iPlayableService, iPlayableServicePtr
 from Tools.Directories import fileExists, SCOPE_SKIN_IMAGE, SCOPE_CURRENT_SKIN, resolveFilename
 
 class speedyXPicon(Renderer):
-    searchPaths = ('/media/usb/XPicons/%s/','/media/usb/%s/','/%s/','/%sx/','/usr/share/enigma2/XPicons/%s/','/usr/share/enigma2/%s/','/usr/%s/','/media/hdd/XPicons/%s/','/media/hdd/%s/')
+    searchPaths = ('/media/usb/XPicons/%s/', '/media/usb/%s/', '/%s/', '/%sx/', '/usr/share/enigma2/XPicons/%s/', '/usr/share/enigma2/%s/', '/usr/%s/', '/media/hdd/XPicons/%s/', '/media/hdd/%s/')
 
     def __init__(self):
         Renderer.__init__(self)
@@ -22,7 +22,7 @@ class speedyXPicon(Renderer):
             if attrib == "path":
                 self.path = value
             else:
-                attribs.append((attrib,value))
+                attribs.append((attrib, value))
         self.skinAttributes = attribs
         return Renderer.applySkin(self, desktop, parent)
 
@@ -35,7 +35,7 @@ class speedyXPicon(Renderer):
                 sname = self.source.text
                 pos = sname.rfind(':')
                 if pos != -1:
-                    sname = sname[:pos].rstrip(':').replace(':','_')
+                    sname = sname[:pos].rstrip(':').replace(':', '_')
                     sname = sname.split("_http")[0]
                 pngname = self.nameCache.get(sname, "")
                 if pngname == "":

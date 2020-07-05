@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: utf-8 -*-
 # Coded by tsiegel (c) 2019
+from __future__ import print_function
 from Renderer import Renderer
 from enigma import ePixmap, eTimer
 import os
@@ -28,11 +29,11 @@ class speedyVWeather3AnimatedPicons(Renderer):
                         self.Path = '/usr/share/enigma2/' + value
                     else:
                         self.Path = '/usr/share/enigma2/' + value + '/'
-                str(self.Path).replace('//','/')
+                str(self.Path).replace('//', '/')
             elif attrib == "delay":
                 self.delay = int(value)
             else:
-                attribs.append((attrib,value))
+                attribs.append((attrib, value))
         self.skinAttributes = attribs
         return Renderer.applySkin(self, desktop, parent)
 
@@ -49,7 +50,7 @@ class speedyVWeather3AnimatedPicons(Renderer):
                     else:
                         self.animate('.png', True)
                 except Exception as ex:
-                    print "Fehler in VWeather3AnimatedPicons changed : " + str(ex)
+                    print("Fehler in VWeather3AnimatedPicons changed : " + str(ex))
 
     def animate(self, path, static=True):
         if static:
@@ -73,6 +74,6 @@ class speedyVWeather3AnimatedPicons(Renderer):
         try:
             self.instance.setPixmapFromFile(self.piclist[self.currentPos - 1])
         except Exception as ex:
-            print "Fehler in VWeather3AnimatedPicons changepic : " + str(ex)
+            print("Fehler in VWeather3AnimatedPicons changepic : " + str(ex))
         self.currentPos -= 1
         self.picchanger.start(self.delay, True)

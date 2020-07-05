@@ -14,6 +14,7 @@
 # Extended MOD atreyou & deso1208 (c) Mai 2016
 #######################################################################
 
+from __future__ import print_function
 from Components.Converter.Converter import Converter
 from Components.Element import cached
 from Components.config import config, ConfigSubsection, ConfigNumber, ConfigSelection
@@ -25,7 +26,7 @@ from enigma import eTimer
 config.plugins.AtileHD = ConfigSubsection()
 config.plugins.AtileHD.refreshInterval = ConfigNumber(default = "10")
 config.plugins.AtileHD.woeid = ConfigNumber(default = "667931")
-config.plugins.AtileHD.tempUnit = ConfigSelection(default = "Celsius", choices = [("Celsius", _("Celsius")),("Fahrenheit", _("Fahrenheit"))])
+config.plugins.AtileHD.tempUnit = ConfigSelection(default = "Celsius", choices = [("Celsius", _("Celsius")), ("Fahrenheit", _("Fahrenheit"))])
 
 def localeInit():
     lang = language.getLanguage() #                                                                                                 getLanguage returns e.g. "fi_FI" for "language_country"
@@ -349,15 +350,15 @@ class WeatherData:
             self.GetWeather()
 
     def downloadError(self, error = None):
-        print "[WeatherUpdate] error fetching weather data"
+        print("[WeatherUpdate] error fetching weather data")
 
     def GetWeather(self):
         timeout = config.plugins.AtileHD.refreshInterval.value * 1000 * 60
         if timeout > 0:
             self.timer.start(timeout, True)
-            print "AtileHD lookup for ID " + str(config.plugins.AtileHD.woeid.value)
+            print("AtileHD lookup for ID " + str(config.plugins.AtileHD.woeid.value))
             url = "http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%3D%22"+str(config.plugins.AtileHD.woeid.value)+"%22&format=xml"
-            getPage(url,method = "GET").addCallback(self.GotWeatherData).addErrback(self.downloadError)
+            getPage(url, method = "GET").addCallback(self.GotWeatherData).addErrback(self.downloadError)
 
     def GotWeatherData(self, data = None):
         if data is not None:
@@ -488,7 +489,7 @@ class WeatherData:
             self.WeatherInfo["forecastTomorrow8Text"] = self.ConvertInfo(weather.getAttributeNode("text").nodeValue)
             self.WeatherInfo["forecastTomorrow8Picon"] = _(str(weather.getAttributeNode("code").nodeValue))
 
-    def getText(self,nodelist):
+    def getText(self, nodelist):
         rc = []
         for node in nodelist:
             if node.nodeType == node.TEXT_NODE:

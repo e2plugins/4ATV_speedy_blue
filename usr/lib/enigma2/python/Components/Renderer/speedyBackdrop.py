@@ -8,7 +8,7 @@ from Components.Sources.CurrentService import CurrentService
 from os import path as os_path
 
 class speedyBackdrop(Renderer):
-    exts = (".bdp.jpg", ".bdp.png",".backdrop.jpg", ".backdrop.png", ".png", ".jpg")
+    exts = (".bdp.jpg", ".bdp.png", ".backdrop.jpg", ".backdrop.png", ".png", ".jpg")
 
     def __init__(self):
         Renderer.__init__(self)
@@ -22,7 +22,7 @@ class speedyBackdrop(Renderer):
             if attrib == "scalecover":
                 self.scalecover = value
             else:
-                attribs.append((attrib,value))
+                attribs.append((attrib, value))
         self.skinAttributes = attribs
         return Renderer.applySkin(self, desktop, parent)
 

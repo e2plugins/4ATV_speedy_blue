@@ -1,3 +1,4 @@
+from __future__ import print_function
 #######################################################################
 #
 #    Renderer for Enigma2
@@ -99,7 +100,7 @@ def addPiconPath(mountpoint):
                     else:
                         continue
                     break
-    except Exception, e:
+    except Exception as e:
         if DBG: j00zekDEBUG('[j00zekPiconAnimation]:[addPiconPath] Exception:' + str(e))
 
 def onPartitionChange(why, part):
@@ -127,7 +128,7 @@ class speedyj00zekPiconAnimation(Renderer):
         self.picsFolder = []
         self.animTimer = eTimer()
         self.animTimer.callback.append(self.timerEvent)
-        self.what = ['CHANGED_DEFAULT','CHANGED_ALL','CHANGED_CLEAR','CHANGED_SPECIFIC','CHANGED_POLL']
+        self.what = ['CHANGED_DEFAULT', 'CHANGED_ALL', 'CHANGED_CLEAR', 'CHANGED_SPECIFIC', 'CHANGED_POLL']
 
     def applySkin(self, desktop, parent):
         if DBG: j00zekDEBUG('[j00zekPiconAnimation]:[applySkin] >>>')
@@ -159,7 +160,7 @@ class speedyj00zekPiconAnimation(Renderer):
                     if self.loadPNGsAnim(os.path.join(path, self.pixmaps)) == True:
                         break
                 self.loadPNGsSubFolders(os.path.join(path, self.pixmaps))
-        except Exception, e:
+        except Exception as e:
             if DBG: j00zekDEBUG('[j00zekPiconAnimation]:[applySkin] Exception %s' % str(e))
         return Renderer.applySkin(self, desktop, parent)
 
@@ -202,8 +203,7 @@ class speedyj00zekPiconAnimation(Renderer):
         if animPath == self.pixmaps: return False
         if os.path.exists(animPath):
             self.pixmaps = animPath
-            pngfiles = [f for f in os.listdir(self.pixmaps) if (os.path.isfile(os.path.join(self.pixmaps, f)) and f.endswith(".png"))]
-            pngfiles.sort()
+            pngfiles = sorted([f for f in os.listdir(self.pixmaps) if (os.path.isfile(os.path.join(self.pixmaps, f)) and f.endswith(".png"))])
             self.pics = []
             self.doAnim = False
             for x in pngfiles:
@@ -212,16 +212,16 @@ class speedyj00zekPiconAnimation(Renderer):
             if len(self.pics) > 0:
                 self.count = len(self.pics)
                 self.doAnim = True
-                if os.path.exists(os.path.join(animPath,'.ctrl')):
-                    with open(os.path.join(animPath,'.ctrl')) as cf:
+                if os.path.exists(os.path.join(animPath, '.ctrl')):
+                    with open(os.path.join(animPath, '.ctrl')) as cf:
                         try:
                             myDelay=cf.readline().strip()
                             cf.close()
                             self.pixdelay = int(myDelay.split('=')[1])
                             if self.pixdelay < 40: self.pixdelay = 40
-                        except Exception, e:
+                        except Exception as e:
                             if DBG: j00zekDEBUG('[j00zekPiconAnimation]:[loadPNGsAnim] Exception "%s" loading .ctrl' % str(e))
-                if DBG: j00zekDEBUG('[j00zekPiconAnimation]:[loadPNGsAnim] Loaded from path=%s, pics=%s, pixdelay=%s, step=%s' % (self.pixmaps,self.count,self.pixdelay,self.pixstep))
+                if DBG: j00zekDEBUG('[j00zekPiconAnimation]:[loadPNGsAnim] Loaded from path=%s, pics=%s, pixdelay=%s, step=%s' % (self.pixmaps, self.count, self.pixdelay, self.pixstep))
                 return True
             else:
                 if DBG: j00zekDEBUG('[j00zekPiconAnimation]:[loadPNGsAnim] No *.png in given path "%s".' % (animPath))

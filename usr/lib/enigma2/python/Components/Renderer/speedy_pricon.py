@@ -4,7 +4,7 @@
 # <widget source="session.Event_Now" render="pricon" position="59,471" size="60,60" zPosition="1" alphatest="blend">
 #       <convert type="infoMovie">PARENTAL_RATING</convert>
 # </widget>
-from Renderer import Renderer
+from Components.Renderer.Renderer import Renderer
 from enigma import ePixmap, loadPNG
 from Tools.Directories import resolveFilename, SCOPE_CURRENT_SKIN
 

@@ -5,7 +5,7 @@
 # <widget render="starsEvent" source="session.Event_Now" pixmap="LiteHD2/star.png" position="560,367" size="200,20" alphatest="blend" transparent="1" zPosition="3" />
 
 from Components.VariableValue import VariableValue
-from Renderer import Renderer
+from Components.Renderer.Renderer import Renderer
 from enigma import eSlider
 import os
 

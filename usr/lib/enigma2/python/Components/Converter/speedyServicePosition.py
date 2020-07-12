@@ -1,5 +1,5 @@
 # Embedded file name: usr/lib/enigma2/python/Components/Converter/ServicePosition.py
-from Converter import Converter
+from Components.Converter.Converter import Converter
 from Poll import Poll
 from enigma import iPlayableService
 from Components.Element import cached, ElementError

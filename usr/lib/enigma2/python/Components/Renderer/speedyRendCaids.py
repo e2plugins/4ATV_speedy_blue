@@ -18,7 +18,7 @@
 #  distributed other than under the conditions noted above.
 #
 
-from Renderer import Renderer
+from Components.Renderer.Renderer import Renderer
 from enigma import eCanvas, eRect, gFont
 from skin import parseColor, parseFont
 

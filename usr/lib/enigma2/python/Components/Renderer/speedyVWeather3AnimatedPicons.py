@@ -2,7 +2,7 @@
 # -*- encoding: utf-8 -*-
 # Coded by tsiegel (c) 2019
 from __future__ import print_function
-from Renderer import Renderer
+from Components.Renderer.Renderer import Renderer
 from enigma import ePixmap, eTimer
 import os
 import glob

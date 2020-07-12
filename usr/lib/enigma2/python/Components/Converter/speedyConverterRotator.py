@@ -5,7 +5,7 @@
 # Version: 0.1 (26.01.2012 04:05)
 # Support: http://dream.altmaster.net/
 #
-from Converter import Converter
+from Components.Converter.Converter import Converter
 from Poll import Poll
 from Components.Element import cached
 from time import strftime

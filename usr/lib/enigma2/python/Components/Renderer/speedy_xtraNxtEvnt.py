@@ -3,7 +3,7 @@
 # for channellist,
 # <widget source="ServiceEvent" render="xtraNxtEvnt" nxtEvents="4" snglEvent="2" font="Regular; 18" position="840,500" size="400,110" zPosition="5" backgroundColor="background" transparent="1" />
 # If file "snglEvent" is greater than 0(zero) "nxtEvents" is invalid...
-from Renderer import Renderer
+from Components.Renderer.Renderer import Renderer
 from enigma import eLabel, eEPGCache
 from Components.VariableText import VariableText
 from time import localtime

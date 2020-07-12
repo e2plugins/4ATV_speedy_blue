@@ -1,7 +1,7 @@
 # Embedded file name: /usr/lib/enigma2/python/Components/Renderer/OE_Volume.py
 from Components.VariableText import VariableText
 from enigma import eLabel, eDVBVolumecontrol, eTimer
-from Renderer import Renderer
+from Components.Renderer.Renderer import Renderer
 
 class speedyAXBlueVolume(Renderer, VariableText):
 

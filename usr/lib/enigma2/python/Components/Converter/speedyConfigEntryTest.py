@@ -1,6 +1,6 @@
 from __future__ import print_function
 # Embedded file name: /usr/lib/enigma2/python/Components/Converter/ConfigEntryTest.py
-from Converter import Converter
+from Components.Converter.Converter import Converter
 from Components.Element import cached
 from Components.config import configfile
 

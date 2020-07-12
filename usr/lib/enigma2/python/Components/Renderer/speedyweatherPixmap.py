@@ -1,5 +1,5 @@
 # Embedded file name: /usr/lib/enigma2/python/Components/Renderer/MSNWeatherPixmap.py
-from Renderer import Renderer
+from Components.Renderer.Renderer import Renderer
 from enigma import ePixmap
 from Components.AVSwitch import AVSwitch
 from enigma import eEnv, ePicLoad, eRect, eSize, gPixmapPtr

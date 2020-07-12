@@ -30,7 +30,7 @@ from __future__ import print_function
 # 02.05.2015 add path uuid device
 # 08.05.2016 add 5001, 5002 stream id
 
-from Renderer import Renderer
+from Components.Renderer.Renderer import Renderer
 from enigma import ePixmap
 from Tools.Directories import SCOPE_SKIN_IMAGE, SCOPE_CURRENT_SKIN, SCOPE_PLUGINS, resolveFilename
 import os

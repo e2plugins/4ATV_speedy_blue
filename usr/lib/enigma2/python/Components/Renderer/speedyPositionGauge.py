@@ -1,5 +1,5 @@
 # Embedded file name: /usr/lib/enigma2/python/Components/Renderer/PositionGauge.py
-from Renderer import Renderer
+from Components.Renderer.Renderer import Renderer
 from enigma import ePositionGauge
 
 class speedyPositionGauge(Renderer):

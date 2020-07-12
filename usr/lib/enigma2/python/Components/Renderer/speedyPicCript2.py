@@ -2,7 +2,7 @@
 from Tools.Directories import fileExists
 from Tools.LoadPixmap import LoadPixmap
 from Components.Pixmap import Pixmap
-from Renderer import Renderer
+from Components.Renderer.Renderer import Renderer
 from enigma import eServiceCenter, eServiceReference, iServiceInformation, iPlayableService, eDVBFrontendParametersSatellite, eDVBFrontendParametersCable
 from string import upper
 from enigma import ePixmap, eTimer

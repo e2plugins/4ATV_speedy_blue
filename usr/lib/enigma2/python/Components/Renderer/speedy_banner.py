@@ -2,7 +2,7 @@
 # by digiteng...03.2020
 #v2...03.2020
 # <widget source="session.Event_Now" render="banner" position="0,0" size="758,140" zPosition="1" />
-from Renderer import Renderer
+from Components.Renderer.Renderer import Renderer
 from enigma import ePixmap, ePicLoad, eTimer
 from Components.AVSwitch import AVSwitch
 from Components.Pixmap import Pixmap

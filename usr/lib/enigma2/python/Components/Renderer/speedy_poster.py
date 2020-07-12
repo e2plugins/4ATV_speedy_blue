@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # by digiteng...02.2020
 # <widget source="session.Event_Now" render="poster" position="0,0" size="185,278" zPosition="1" />
-from Renderer import Renderer
+from Components.Renderer.Renderer import Renderer
 from enigma import ePixmap, ePicLoad
 from Components.AVSwitch import AVSwitch
 from Components.Pixmap import Pixmap

@@ -1,5 +1,5 @@
 # Embedded file name: /media/build/vti-dorie/build/tmp/work/armv7ahf-vfp-neon-oe-linux-gnueabi/enigma2-python/enigma2-python-vti-11.0.2-20170614-r0r0/git/lib/python/Components/Renderer/Pig.py
-from Renderer import Renderer
+from Components.Renderer.Renderer import Renderer
 from enigma import eVideoWidget, eSize, ePoint, getDesktop, eServiceCenter, eServiceReference, getDesktop, iServiceInformation
 from Screens.InfoBar import InfoBar
 from Tools.FBHelperTool import FBHelperTool

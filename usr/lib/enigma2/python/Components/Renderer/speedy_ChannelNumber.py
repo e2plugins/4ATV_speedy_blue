@@ -1,7 +1,7 @@
 # Embedded file name: /usr/lib/enigma2/python/Components/Renderer/ChannelNumber.py
 from Components.VariableText import VariableText
 from enigma import eLabel, iPlayableService
-from Renderer import Renderer
+from Components.Renderer.Renderer import Renderer
 
 class speedy_ChannelNumber(Renderer, VariableText):
 

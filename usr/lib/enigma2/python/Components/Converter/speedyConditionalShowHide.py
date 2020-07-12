@@ -1,6 +1,6 @@
 # Embedded file name: /usr/lib/enigma2/python/Components/Converter/speedyConditionalShowHide.py
 from enigma import eTimer
-from Converter import Converter
+from Components.Converter.Converter import Converter
 
 class speedyConditionalShowHide(Converter, object):
 
